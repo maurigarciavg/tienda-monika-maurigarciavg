@@ -61,23 +61,20 @@
       }
       cargarDatos();
       async function enviarProducto() {
-        // 1. Creamos el objeto con lo que Monika escribió
         const nuevo = {
           nombre: document.getElementById("nombre").value,
           precio: document.getElementById("precio").value,
           tecnica: document.getElementById("tecnica").value,
         };
 
-        // 2. Lo enviamos al servidor con una petición "POST"
         await fetch("/api/inventario", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevo),
         });
 
-        // 3. Limpiamos los cuadros y recargamos la lista
         alert("¡Añadido con éxito!");
-        cargarDatos(); // Volvemos a llamar a la función que pinta las tarjetas
+        cargarDatos();
       }
     </script>
   </body>
