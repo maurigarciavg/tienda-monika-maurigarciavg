@@ -10,6 +10,7 @@
       <h1>Monika: Crochet & Knitting</h1>
       <p>Hecho a mano, puntada a puntada</p>
     </header>
+
     <section
       id="panel-admin"
       style="
@@ -19,27 +20,47 @@
         background: white;
         border-radius: 15px;
         border: 2px dashed #d4a373;
+        text-align: center;
       "
     >
       <h2>Panel de Monika</h2>
-      <input type="text" id="nombre" placeholder="Nombre (ej: Bufanda)" />
-      <input type="number" id="precio" placeholder="Precio (€)" />
+      <input
+        type="text"
+        id="nombre"
+        placeholder="Nombre (ej: Gorro Ruso)"
+        style="display: block; width: 90%; margin: 10px auto; padding: 8px"
+      />
+      <input
+        type="number"
+        id="precio"
+        placeholder="Precio (€)"
+        style="display: block; width: 90%; margin: 10px auto; padding: 8px"
+      />
       <input
         type="text"
         id="tecnica"
         placeholder="Técnica (Crochet/Knitting)"
+        style="display: block; width: 90%; margin: 10px auto; padding: 8px"
       />
+
+      <label style="display: block; margin-top: 10px; font-weight: bold"
+        >Subir foto del producto:</label
+      >
+      <input type="file" id="foto" accept="image/*" style="margin: 10px auto" />
+
       <button
         onclick="enviarProducto()"
         class="btn-comprar"
-        style="margin-top: 10px"
+        style="display: block; width: 100%; margin-top: 15px"
       >
-        Añadir a la Tienda
+        Publicar en la Tienda
       </button>
     </section>
+
     <div id="lista-productos">Cargando creaciones...</div>
 
     <script>
+      // 1. FUNCIÓN PARA CARGAR Y MOSTRAR LOS PRODUCTOS
       function cargarDatos() {
         fetch("/api/inventario")
           .then((res) => res.json())
@@ -49,7 +70,7 @@
             datos.forEach((p) => {
               contenedor.innerHTML += `
                             <div class="producto">
-                                <img src="https://picsum.photos/200/150?random=${Math.random()}" alt="Lana" style="border-radius: 10px; margin-bottom: 10px;">
+                                <img src="${p.imagen || "https://picsum.photos/200/150"}" style="width:100%; height:200px; object-fit:cover; border-radius:10px; margin-bottom:10px;">
                                 <h3>${p.nombre}</h3>
                                 <p>Técnica: ${p.tecnica}</p>
                                 <b>${p.precio}€</b>
@@ -59,23 +80,33 @@
             });
           });
       }
-      cargarDatos();
+
+      // 2. NUEVA FUNCIÓN PARA ENVIAR PRODUCTO + FOTO
       async function enviarProducto() {
-        const nuevo = {
-          nombre: document.getElementById("nombre").value,
-          precio: document.getElementById("precio").value,
-          tecnica: document.getElementById("tecnica").value,
-        };
+        // FormData es necesario cuando enviamos archivos (fotos)
+        const formData = new FormData();
+        formData.append("nombre", document.getElementById("nombre").value);
+        formData.append("precio", document.getElementById("precio").value);
+        formData.append("tecnica", document.getElementById("tecnica").value);
+        formData.append("foto", document.getElementById("foto").files[0]);
 
         await fetch("/api/inventario", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(nuevo),
+          body: formData, // Enviamos el paquete con la imagen al servidor
         });
 
-        alert("¡Añadido con éxito!");
-        cargarDatos();
+        alert("¡Producto y foto publicados!");
+
+        // Limpiar formulario
+        document.getElementById("nombre").value = "";
+        document.getElementById("precio").value = "";
+        document.getElementById("tecnica").value = "";
+        document.getElementById("foto").value = "";
+
+        cargarDatos(); // Refrescamos la lista para ver la nueva foto
       }
+
+      cargarDatos();
     </script>
   </body>
 </html>
