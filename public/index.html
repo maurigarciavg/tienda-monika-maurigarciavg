@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Monika - Arte en Lana</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Monika: Crochet & Knitting</h1>
+      <p>Hecho a mano, puntada a puntada</p>
+    </header>
+    <section
+      id="panel-admin"
+      style="
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 15px;
+        border: 2px dashed #d4a373;
+      "
+    >
+      <h2>Panel de Monika</h2>
+      <input type="text" id="nombre" placeholder="Nombre (ej: Bufanda)" />
+      <input type="number" id="precio" placeholder="Precio (€)" />
+      <input
+        type="text"
+        id="tecnica"
+        placeholder="Técnica (Crochet/Knitting)"
+      />
+      <button
+        onclick="enviarProducto()"
+        class="btn-comprar"
+        style="margin-top: 10px"
+      >
+        Añadir a la Tienda
+      </button>
+    </section>
+    <div id="lista-productos">Cargando creaciones...</div>
+
+    <script>
+      function cargarDatos() {
+        fetch("/api/inventario")
+          .then((res) => res.json())
+          .then((datos) => {
+            const contenedor = document.getElementById("lista-productos");
+            contenedor.innerHTML = "";
+            datos.forEach((p) => {
+              contenedor.innerHTML += `
+                            <div class="producto">
+                                <img src="https://picsum.photos/200/150?random=${Math.random()}" alt="Lana" style="border-radius: 10px; margin-bottom: 10px;">
+                                <h3>${p.nombre}</h3>
+                                <p>Técnica: ${p.tecnica}</p>
+                                <b>${p.precio}€</b>
+                                <button class="btn-comprar">Ver detalle</button>
+                            </div>
+                        `;
+            });
+          });
+      }
+      cargarDatos();
+      async function enviarProducto() {
+        // 1. Creamos el objeto con lo que Monika escribió
+        const nuevo = {
+          nombre: document.getElementById("nombre").value,
+          precio: document.getElementById("precio").value,
+          tecnica: document.getElementById("tecnica").value,
+        };
+
+        // 2. Lo enviamos al servidor con una petición "POST"
+        await fetch("/api/inventario", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevo),
+        });
+
+        // 3. Limpiamos los cuadros y recargamos la lista
+        alert("¡Añadido con éxito!");
+        cargarDatos(); // Volvemos a llamar a la función que pinta las tarjetas
+      }
+    </script>
+  </body>
+</html>
