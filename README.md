@@ -9,4 +9,4 @@ Proyecto Full Stack para la venta de productos artesanales hechos a mano.
 ## 🚀 Cómo ejecutarlo
 1. `npm install`
 2. `node server.js`
-3. Abrir `http://localhost:3000`
+3. Abrir `http://localhost:3000` 
