@@ -79,7 +79,7 @@ export default async function ProductoPage({
               ¿Te interesa? Contáctame por:
             </p>
             <a
-              href="https://instagram.com/monnama"
+              href="https://www.instagram.com/made_bymonnama"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 w-full bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-4 rounded-xl font-medium transition-colors duration-200"
