@@ -9,14 +9,14 @@ const config: Config = {
     extend: {
       colors: {
         monnama: {
-          cream: "#FAF8F4",
-          surface: "#F0EBE3",
-          terra: "#B87A52",
-          "terra-dark": "#8B5E3C",
-          sage: "#7B9B7E",
-          brown: "#2D1E14",
-          "brown-mid": "#6B5744",
-          peach: "#E8D5BC",
+          cream: "#FFFEF9",
+          surface: "#FFF0F5",
+          terra: "#E8829A",
+          "terra-dark": "#C4607A",
+          sage: "#72BDA3",
+          brown: "#1F2952",
+          "brown-mid": "#7B6080",
+          peach: "#FFE4ED",
         },
       },
       fontFamily: {

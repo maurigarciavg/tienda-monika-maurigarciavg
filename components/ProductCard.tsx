@@ -20,6 +20,11 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           <span className="absolute top-3 left-3 bg-white/90 text-monnama-terra text-xs font-medium px-3 py-1 rounded-full">
             {producto.tecnica}
           </span>
+          {!producto.disponible && (
+            <span className="absolute top-3 right-3 bg-gray-800 text-white text-xs font-medium px-3 py-1 rounded-full">
+              Agotado
+            </span>
+          )}
         </div>
         <div className="p-5">
           <h3 className="font-display text-xl text-monnama-brown mb-1 group-hover:text-monnama-terra transition-colors">
