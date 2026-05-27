@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Sobre Monnama — La historia de Monika",
@@ -21,8 +22,15 @@ export default function SobreMonnamaPage() {
 
       {/* Historia */}
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
-        <div className="aspect-[4/5] bg-monnama-surface rounded-3xl flex items-center justify-center">
-          <span className="text-8xl">🧶</span>
+        <div className="aspect-[4/5] bg-monnama-surface rounded-3xl overflow-hidden relative">
+          {/* Cuando tengas la foto de Monika: guárdala en public/uploads/monika-perfil.jpg
+              y cambia el src a "/uploads/monika-perfil.jpg" */}
+          <Image
+            src="/uploads/monika-perfil.jpg"
+            alt="Monika, artesana detrás de Monnama"
+            fill
+            className="object-cover"
+          />
         </div>
         <div>
           <h2 className="font-display text-3xl text-monnama-brown mb-6">

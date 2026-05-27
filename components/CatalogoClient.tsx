@@ -1,41 +1,82 @@
 "use client";
 
 import { useState } from "react";
-import { productos, Tecnica } from "@/data/productos";
+import { productos, Tecnica, Categoria } from "@/data/productos";
 import ProductCard from "@/components/ProductCard";
 
-type Filtro = "Todos" | Tecnica;
-const filtros: Filtro[] = ["Todos", "Crochet", "Knitting"];
+type FiltroTecnica = "Todas" | Tecnica;
+type FiltroCategoria = "Todas" | Categoria;
+
+const tecnicas: FiltroTecnica[] = ["Todas", "Crochet", "Knitting"];
+const categorias: FiltroCategoria[] = [
+  "Todas", "Gorros", "Bufandas", "Guantes", "Bolsos", "Amigurumis", "Bebé", "Hogar", "Ropa",
+];
 
 export default function CatalogoClient() {
-  const [filtro, setFiltro] = useState<Filtro>("Todos");
+  const [tecnica, setTecnica] = useState<FiltroTecnica>("Todas");
+  const [categoria, setCategoria] = useState<FiltroCategoria>("Todas");
 
-  const productosFiltrados =
-    filtro === "Todos"
-      ? productos
-      : productos.filter((p) => p.tecnica === filtro);
+  const filtrar = (p: (typeof productos)[0]) => {
+    const matchTecnica = tecnica === "Todas" || p.tecnica === tecnica;
+    const matchCategoria = categoria === "Todas" || p.categoria === categoria;
+    return matchTecnica && matchCategoria;
+  };
+
+  const disponibles = productos.filter((p) => filtrar(p) && p.disponible);
+  const agotados = productos.filter((p) => filtrar(p) && !p.disponible);
+  const productosFiltrados = [...disponibles, ...agotados];
 
   return (
     <>
-      <div className="flex gap-3 mb-10 flex-wrap">
-        {filtros.map((f) => (
-          <button
-            key={f}
-            onClick={() => setFiltro(f)}
-            className={`px-6 py-2 rounded-full border font-medium transition-colors duration-200 ${
-              filtro === f
-                ? "bg-monnama-terra text-white border-monnama-terra"
-                : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
-            }`}
-          >
-            {f}
-          </button>
-        ))}
+      {/* Filtro por categoría */}
+      <div className="mb-3">
+        <p className="text-xs font-medium text-monnama-brown-mid uppercase tracking-wider mb-2">Categoría</p>
+        <div className="flex gap-2 flex-wrap">
+          {categorias.map((c) => (
+            <button
+              key={c}
+              onClick={() => setCategoria(c)}
+              className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors duration-200 ${
+                categoria === c
+                  ? "bg-monnama-terra text-white border-monnama-terra"
+                  : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* Filtro por técnica */}
+      <div className="mb-10">
+        <p className="text-xs font-medium text-monnama-brown-mid uppercase tracking-wider mb-2">Técnica</p>
+        <div className="flex gap-2 flex-wrap">
+          {tecnicas.map((t) => (
+            <button
+              key={t}
+              onClick={() => setTecnica(t)}
+              className={`px-4 py-2 rounded-full border text-sm transition-colors duration-200 ${
+                tecnica === t
+                  ? "bg-monnama-sage text-white border-monnama-sage"
+                  : "bg-transparent text-monnama-brown-mid border-monnama-brown-mid/50 hover:border-monnama-sage hover:text-monnama-sage"
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Contador */}
+      <p className="text-monnama-brown-mid text-sm mb-6">
+        {productosFiltrados.length} {productosFiltrados.length === 1 ? "pieza" : "piezas"}
+        {(categoria !== "Todas" || tecnica !== "Todas") && " encontradas"}
+      </p>
 
       {productosFiltrados.length === 0 ? (
         <p className="text-monnama-brown-mid text-center py-20">
-          No hay productos en esta categoría aún.
+          No hay productos en esta combinación de filtros.
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
