@@ -29,18 +29,21 @@ export default function SobreMonnamaPage() {
             Hola, soy Monika
           </h2>
           <p className="text-monnama-brown-mid leading-relaxed mb-4">
-            Cada pieza que creo lleva tiempo, cuidado y mucho cariño. El
-            crochet y el knitting no son solo técnicas para mí — son una forma
-            de crear algo único con mis propias manos.
+            Soy de Eslovaquia, pero la vida me ha llevado por caminos bonitos:
+            viví en Reino Unido, volví a mi país, y ahora he echado raíces en
+            Granada, rodeada de montañas y luz del sur. Aquí es donde Monnama
+            ha encontrado su hogar.
           </p>
           <p className="text-monnama-brown-mid leading-relaxed mb-4">
-            Cada proyecto es diferente, cada lana tiene su carácter, y cada
-            pieza que sale de mis manos es irrepetible. Eso es lo que hace
-            especial a Monnama.
+            Las manualidades han sido parte de mí desde siempre. El crochet y
+            el knitting en especial — coger una madeja de lana y convertirla en
+            algo que alguien va a usar y querer — eso no tiene precio. Cada
+            punto es una pequeña decisión, y cada pieza terminada es algo
+            único que no existía antes.
           </p>
           <p className="text-monnama-brown-mid leading-relaxed">
-            Si ves algo que te gusta, no dudes en contactarme. Puedo adaptar
-            colores, tamaños o crear algo completamente personalizado para ti.
+            Si algo te llama la atención, escríbeme. Puedo adaptar colores,
+            tallas o crear algo pensado solo para ti.
           </p>
         </div>
       </div>
@@ -55,18 +58,17 @@ export default function SobreMonnamaPage() {
             {
               emoji: "✋",
               titulo: "100% artesanal",
-              texto: "Cada pieza está tejida a mano, sin producción en serie.",
+              texto: "Cada pieza está tejida a mano. Sin máquinas, sin producción en serie.",
+            },
+            {
+              emoji: "🌿",
+              titulo: "Con raíces",
+              texto: "Inspirada en la naturaleza, la montaña y el ritmo tranquilo de las cosas hechas despacio.",
             },
             {
               emoji: "🎨",
-              titulo: "Personalizable",
-              texto:
-                "¿Quieres otro color o talla? Escríbeme y lo hacemos juntas.",
-            },
-            {
-              emoji: "💚",
-              titulo: "Hecho con amor",
-              texto: "Cada puntada lleva tiempo y dedicación real.",
+              titulo: "A tu medida",
+              texto: "¿Otro color, otra talla, algo completamente nuevo? Escríbeme y lo creamos juntas.",
             },
           ].map(({ emoji, titulo, texto }) => (
             <div key={titulo} className="text-center">
