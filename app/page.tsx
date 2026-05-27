@@ -2,7 +2,7 @@ import Link from "next/link";
 import { productos } from "@/data/productos";
 import ProductCard from "@/components/ProductCard";
 
-const destacados = productos.slice(0, 3);
+const destacados = productos.filter((p) => p.disponible).slice(0, 3);
 
 export default function Home() {
   return (
