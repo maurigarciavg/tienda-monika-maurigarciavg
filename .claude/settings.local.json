@@ -6,7 +6,11 @@
       "Bash(git rm *)",
       "Bash(git add *)",
       "Bash(git restore *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "WebFetch(domain:www.instagram.com)",
+      "Bash(npx plugins *)",
+      "Bash(vercel link *)",
+      "Bash(vercel ls *)"
     ]
   }
 }
