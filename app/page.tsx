@@ -78,7 +78,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {destacados.map((producto, i) => (
-            <ScrollReveal key={producto.id} delay={i * 120} variant="weave">
+            <ScrollReveal key={producto.id} delay={i * 120}>
               <ProductCard producto={producto} />
             </ScrollReveal>
           ))}
