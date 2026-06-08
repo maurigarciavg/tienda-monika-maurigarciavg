@@ -19,14 +19,14 @@ Tienda web para Monika (marca: **Monnama**). Expone y vende piezas artesanales h
 ## Paleta de colores Monnama
 | Clase Tailwind         | Hex       | Uso                          |
 |------------------------|-----------|------------------------------|
-| `monnama-cream`        | #FAF8F4   | Fondo principal              |
-| `monnama-surface`      | #F0EBE3   | Fondo de tarjetas/secciones  |
-| `monnama-terra`        | #B87A52   | Color primario (botones)     |
-| `monnama-terra-dark`   | #8B5E3C   | Hover del primario           |
-| `monnama-sage`         | #7B9B7E   | Color secundario             |
-| `monnama-brown`        | #2D1E14   | Texto principal              |
-| `monnama-brown-mid`    | #6B5744   | Texto secundario             |
-| `monnama-peach`        | #E8D5BC   | Fondo secciones destacadas   |
+| `monnama-cream`        | #FFFEF9   | Fondo principal (blanco cálido) |
+| `monnama-surface`      | #FFF0F5   | Fondo de tarjetas/secciones (blush suave) |
+| `monnama-terra`        | #E8829A   | Color primario — rosa (botones, badges) |
+| `monnama-terra-dark`   | #C4607A   | Hover del primario (rosa más intenso) |
+| `monnama-sage`         | #72BDA3   | Color secundario — menta (uso puntual, filtros técnica) |
+| `monnama-brown`        | #1F2952   | Texto principal (azul marino oscuro) |
+| `monnama-brown-mid`    | #7B6080   | Texto secundario (malva grisáceo) |
+| `monnama-peach`        | #FFE4ED   | Fondo secciones destacadas (blush rosa) |
 
 ## Estructura de páginas
 - `/` — Home: hero + productos destacados + teaser sobre Monnama

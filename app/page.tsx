@@ -37,7 +37,7 @@ export default function Home() {
             >
               <path
                 d="M0,20 C20,6 40,6 60,20 C80,34 100,34 120,20 C140,6 160,6 180,20 C200,34 220,34 240,20 C260,6 280,6 300,20 C320,34 340,34 360,20 C380,6 400,6 420,20"
-                stroke="#7B9B7E"
+                stroke="#E8829A"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 className="yarn-path"
