@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cursor Ovillo de Lana</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0D0D1A;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: none; /* Ocultamos el cursor del sistema */
+  }
+
+  canvas {
+    position: fixed;
+    inset: 0;
+  }
+
+  /* Fondo con degradado sutil para dar profundidad */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 55%, rgba(60, 10, 80, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(10, 30, 80, 0.30) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hint {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(249, 168, 201, 0.30);
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<p class="hint">Mueve el ratón para desenrollar la lana ✦</p>
+
+<script>
+// ====================================================================
+// CURSOR OVILLO DE LANA
+// Técnica: Verlet Integration para simular físicas de cuerda
+//
+// Concepto de Verlet:
+//   La velocidad de un nodo se infiere de su historial de posiciones:
+//   velocidad = posición_actual - posición_anterior
+//   nueva_pos = actual + (actual - anterior) * damping + fuerzas_externas
+//
+//   Las fuerzas externas son: gravedad (abajo) y fricción del aire (damping).
+//   Después de mover los nodos, "constraints" corrigen las distancias
+//   entre nodos adyacentes para que la cadena no se estire de más.
+// ====================================================================
+
+// ---- Parámetros centrales ----
+const CFG = {
+  // Físicas de la cuerda
+  GRAVITY:          0.45,   // px/frame² — caída visible hacia el suelo
+  DAMPING:          0.988,  // rozamiento: oscila poco, se asienta bien
+  SEGMENT_LEN:      14,     // longitud de cada segmento
+  MAX_NODES:        80,     // cuerda larga para que llegue al suelo
+  CONSTRAINT_ITER:  10,     // iteraciones por frame para resolver constraints
+  PX_PER_NODE:      5,      // píxeles de movimiento para liberar 1 nodo
+  FLOOR_MARGIN:     18,     // píxeles desde el borde inferior donde "reposa"
+
+  // Colores de la hebra — paleta Monnama
+  YARN_BODY:      '#E8829A',              // monnama-terra (rosa principal)
+  YARN_GLOW:      'rgba(196,96,122,1)',   // monnama-terra-dark (halo)
+  YARN_SHINE:     'rgba(255,228,237,1)',  // monnama-peach (brillo suave)
+
+  // Colores del ovillo
+  BALL_R:         20,
+  BALL_LIGHT:     '#FFE4ED',             // monnama-peach
+  BALL_DARK:      '#C4607A',             // monnama-terra-dark
+  BALL_WRAP:      'rgba(123, 96, 128, 0.45)', // monnama-brown-mid (vueltas)
+};
+
+// ---- Canvas ----
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ---- Posición del ratón ----
+const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+let prevMx = mouse.x, prevMy = mouse.y;
+let accumDist = 0; // acumulador de distancia para el efecto de desenrollado
+
+document.addEventListener('mousemove', e => {
+  prevMx = mouse.x;
+  prevMy = mouse.y;
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+  // Sumamos la distancia recorrida este evento
+  const dx = mouse.x - prevMx;
+  const dy = mouse.y - prevMy;
+  accumDist += Math.sqrt(dx * dx + dy * dy);
+});
+
+// ====================================================================
+// NODOS DE VERLET
+// Cada nodo guarda: posición actual (x,y) y posición anterior (px,py).
+// La velocidad es implícita: v = (x-px, y-py).
+// ====================================================================
+class Node {
+  constructor(x, y) {
+    this.x  = x; this.y  = y;
+    this.px = x; this.py = y;
+  }
+}
+
+// Reservamos todos los nodos desde el inicio (evita garbage collection)
+const nodes = Array.from({ length: CFG.MAX_NODES }, () => new Node(mouse.x, mouse.y));
+let active = 2; // cuántos nodos participan ahora mismo en la simulación
+
+// ====================================================================
+// FÍSICAS
+// ====================================================================
+
+/** Integración de Verlet: aplica velocidad + gravedad a cada nodo libre */
+function integrate() {
+  // El nodo 0 es el cursor, no lo simulamos
+  for (let i = 1; i < active; i++) {
+    const n = nodes[i];
+
+    // Velocidad amortiguada (fricción del aire)
+    const vx = (n.x - n.px) * CFG.DAMPING;
+    const vy = (n.y - n.py) * CFG.DAMPING;
+
+    n.px = n.x;
+    n.py = n.y;
+
+    // Aplicar movimiento + gravedad
+    n.x += vx;
+    n.y += vy + CFG.GRAVITY;
+  }
+}
+
+/**
+ * Colisión con el suelo:
+ * Si un nodo cae por debajo del límite inferior de la pantalla,
+ * lo devolvemos al suelo y eliminamos su velocidad vertical
+ * para que "repose" ahí en lugar de rebotar.
+ */
+function applyFloor() {
+  const floorY = canvas.height - CFG.FLOOR_MARGIN;
+  for (let i = 1; i < active; i++) {
+    if (nodes[i].y >= floorY) {
+      nodes[i].y  = floorY;
+      nodes[i].py = floorY; // velocidad vertical = 0 al tocar el suelo
+    }
+  }
+}
+
+/**
+ * Constraints de distancia:
+ * Para cada par adyacente (i, i+1), ajustamos sus posiciones
+ * para que su distancia sea exactamente SEGMENT_LEN.
+ * El nodo 0 está fijado al cursor y no se desplaza.
+ * Repetimos varias veces para que la corrección converja.
+ */
+function constraints() {
+  for (let iter = 0; iter < CFG.CONSTRAINT_ITER; iter++) {
+    // Ancla: nodo 0 sigue al cursor
+    nodes[0].x = mouse.x;
+    nodes[0].y = mouse.y;
+
+    for (let i = 0; i < active - 1; i++) {
+      const a = nodes[i];
+      const b = nodes[i + 1];
+
+      const dx   = b.x - a.x;
+      const dy   = b.y - a.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
+
+      // Error relativo: cuánto se aleja de la longitud deseada
+      const err = (dist - CFG.SEGMENT_LEN) / dist;
+
+      if (i === 0) {
+        // Solo movemos b (a está anclado al cursor)
+        b.x -= dx * err;
+        b.y -= dy * err;
+      } else {
+        // Distribuimos el error a partes iguales
+        const half = err * 0.5;
+        a.x += dx * half;
+        a.y += dy * half;
+        b.x -= dx * half;
+        b.y -= dy * half;
+      }
+    }
+  }
+}
+
+/**
+ * Efecto de "desenrollado": activa nuevos nodos conforme el cursor avanza.
+ * Cada PX_PER_NODE píxeles de movimiento acumulado, se libera un nuevo nodo.
+ * El nodo nace en el cursor con velocidad cero y la física lo arrastra.
+ */
+function grow() {
+  while (accumDist >= CFG.PX_PER_NODE && active < CFG.MAX_NODES) {
+    const n = nodes[active];
+    n.x = mouse.x; n.px = mouse.x;
+    n.y = mouse.y; n.py = mouse.y;
+    active++;
+    accumDist -= CFG.PX_PER_NODE;
+  }
+  if (active >= CFG.MAX_NODES) accumDist = 0;
+}
+
+// ====================================================================
+// RENDERIZADO
+// ====================================================================
+
+/**
+ * Dibuja la hebra de lana.
+ *
+ * Estrategia visual: tres capas por segmento
+ *   1) Halo difuso grueso  → da sensación de pelusa y volumen
+ *   2) Cuerpo principal    → el hilo en sí
+ *   3) Hilo de luz         → reflejo fino encima para textura
+ *
+ * La opacidad y el grosor decrecen desde la cabeza (cursor) hasta la cola
+ * para simular que la lana se desgasta/desvanece con la distancia.
+ */
+function drawYarn() {
+  if (active < 2) return;
+
+  ctx.lineCap  = 'round';
+  ctx.lineJoin = 'round';
+
+  for (let i = 0; i < active - 1; i++) {
+    // t: 0 = nodo junto al cursor, 1 = nodo en la cola
+    const t   = i / (active - 1);
+    const op  = 1 - t * 0.65;          // opacidad: 100% → 35%
+    const w   = 3.5 - t * 2.2;         // grosor: 3.5px → ~1.3px
+
+    const x1 = nodes[i].x,     y1 = nodes[i].y;
+    const x2 = nodes[i+1].x,   y2 = nodes[i+1].y;
+
+    // --- Capa 1: halo/pelusa ---
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineWidth   = w + 8;
+    ctx.strokeStyle = `rgba(196,96,122,${op * 0.17})`;
+    ctx.shadowBlur  = 16;
+    ctx.shadowColor = `rgba(196,96,122,${op * 0.32})`;
+    ctx.stroke();
+
+    // --- Capa 2: cuerpo de la lana ---
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineWidth   = Math.max(0.8, w);
+    ctx.strokeStyle = `rgba(232,130,154,${op})`;
+    ctx.shadowBlur  = 5;
+    ctx.shadowColor = `rgba(232,130,154,${op * 0.65})`;
+    ctx.stroke();
+
+    // --- Capa 3: hilo de luz ---
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineWidth   = Math.max(0.3, w * 0.33);
+    ctx.strokeStyle = `rgba(255,228,237,${op * 0.42})`;
+    ctx.shadowBlur  = 0;
+    ctx.stroke();
+  }
+
+  ctx.shadowBlur = 0;
+}
+
+/**
+ * Dibuja el ovillo en la posición del cursor.
+ *
+ * Estructura:
+ *   - Gradiente radial esférico para dar sensación de volumen.
+ *   - Dos series de elipses rotadas, animadas con el tiempo,
+ *     que simulan las capas de lana enrollada.
+ *   - Borde luminoso exterior.
+ *   - Pequeño destello (highlight) que aporta brillo.
+ *
+ * @param {number} ts - timestamp en ms del requestAnimationFrame
+ */
+function drawBall(ts) {
+  const { x, y } = mouse;
+  const r = CFG.BALL_R;
+  const t = ts * 0.001; // convertir a segundos para la animación
+
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Recorte circular: todo lo que dibujemos dentro del ctx.save() queda
+  // limitado al área del ovillo, sin que las líneas de lana sobresalgan.
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  ctx.clip();
+
+  // Relleno: gradiente radial descentrado (simula iluminación lateral)
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  const grad = ctx.createRadialGradient(-r * 0.30, -r * 0.32, 1, 0, 0, r * 1.1);
+  grad.addColorStop(0, CFG.BALL_LIGHT);
+  grad.addColorStop(1, CFG.BALL_DARK);
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Vueltas de lana — serie 1: elipses achatadas en Y (vueltas "horizontales")
+  ctx.strokeStyle = CFG.BALL_WRAP;
+  ctx.lineWidth   = 1.7;
+  ctx.shadowBlur  = 0;
+  for (let i = 0; i < 6; i++) {
+    const angle = (i / 6) * Math.PI + t * 0.33;
+    ctx.save();
+    ctx.rotate(angle);
+    ctx.scale(1, 0.38);           // aplanar en Y
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.88, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Vueltas de lana — serie 2: elipses achatadas en X (vueltas "verticales")
+  for (let i = 0; i < 4; i++) {
+    const angle = (i / 4) * Math.PI + t * 0.18 + 0.5;
+    ctx.save();
+    ctx.rotate(angle);
+    ctx.scale(0.38, 1);           // aplanar en X
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.80, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.restore(); // ← fin del clip
+
+  // Borde luminoso del ovillo (fuera del clip para que no se corte)
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(196, 96, 122, 0.55)';
+  ctx.lineWidth   = 1.5;
+  ctx.shadowBlur  = 12;
+  ctx.shadowColor = 'rgba(232, 130, 154, 0.50)';
+  ctx.stroke();
+  ctx.shadowBlur  = 0;
+
+  // Destello en el cuadrante superior-izquierdo
+  ctx.beginPath();
+  ctx.arc(x - r * 0.28, y - r * 0.30, r * 0.21, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.24)';
+  ctx.fill();
+}
+
+// ====================================================================
+// BUCLE PRINCIPAL
+// ====================================================================
+
+function loop(timestamp) {
+  requestAnimationFrame(loop); // pedir el siguiente frame inmediatamente
+
+  // 1. Borrar canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 2. Actualizar simulación
+  grow();        // liberar nuevos nodos si hay movimiento acumulado
+  integrate();   // avanzar cada nodo con Verlet (velocidad + gravedad)
+  applyFloor();  // detener nodos que toquen el suelo
+  constraints(); // corregir distancias para que la cadena no se estire
+  applyFloor();  // segunda pasada post-constraints para mantener el suelo
+
+  // 3. Renderizar (orden: hebra detrás, ovillo delante)
+  drawYarn();
+  drawBall(timestamp);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
