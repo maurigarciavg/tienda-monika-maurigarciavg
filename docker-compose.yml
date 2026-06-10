@@ -1,0 +1,13 @@
+services:
+  monnama:
+    build: .
+    ports:
+      - "3001:3000"        # host:container — puedes cambiar 3001 si está ocupado
+    volumes:
+      - .:/app             # sincroniza tu código local con el contenedor
+      - /app/node_modules  # preserva los node_modules del contenedor (no uses los del host)
+      - /app/.next         # preserva el build cache del contenedor
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true   # necesario en Windows para que hot-reload funcione en Docker
+    command: npm run dev
