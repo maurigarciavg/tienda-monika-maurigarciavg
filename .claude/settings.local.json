@@ -13,7 +13,9 @@
       "Bash(vercel ls *)",
       "Bash(npx vercel *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(Rename-Item \"c:\\\\Users\\\\maugv\\\\OneDrive\\\\Escritorio\\\\Mis proyectos\\\\tienda-monika\\\\public\\\\uploads\\\\Logo Monnama.jpg\" \"logo-monnama.jpg\")",
+      "Bash(docker compose *)"
     ]
   }
 }

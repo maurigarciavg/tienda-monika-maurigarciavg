@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -17,11 +18,15 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-monnama-cream/90 backdrop-blur-sm border-b border-monnama-surface">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-2xl text-monnama-brown hover:text-monnama-terra transition-colors"
-        >
-          Monnama
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Image
+            src="/uploads/logo-monnama-removebg-preview.png"
+            alt="Monnama"
+            width={160}
+            height={48}
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}
