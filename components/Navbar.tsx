@@ -20,11 +20,10 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
           <Image
-            src="/uploads/logo-monnama.jpg"
+            src="/uploads/logo-monnama-removebg-preview.png"
             alt="Monnama"
             width={160}
             height={48}
-            className="mix-blend-multiply"
             style={{ objectFit: "contain" }}
             priority
           />
