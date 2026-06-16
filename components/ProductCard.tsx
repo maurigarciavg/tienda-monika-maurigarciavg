@@ -5,7 +5,7 @@ import { Producto } from "@/data/productos";
 export default function ProductCard({ producto }: { producto: Producto }) {
   return (
     <Link href={`/producto/${producto.id}`} className="group block">
-      <div className="bg-monnama-surface rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="bg-monnama-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-monnama-terra/20 hover:-translate-y-1.5 transition-all duration-300">
         <div className="aspect-square relative bg-monnama-peach/50 flex items-center justify-center">
           {producto.imagen ? (
             <Image
