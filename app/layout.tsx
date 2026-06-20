@@ -15,9 +15,25 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tienda-monika-maurigarciavg.vercel.app"),
   title: "Monnama — Tejidos y Crochet hechos a mano",
   description:
     "Piezas únicas tejidas a mano por Monika. Crochet y knitting con amor, puntada a puntada.",
+  openGraph: {
+    title: "Monnama — Tejidos y Crochet hechos a mano",
+    description:
+      "Piezas únicas tejidas a mano por Monika. Crochet y knitting con amor, puntada a puntada.",
+    url: "/",
+    siteName: "Monnama",
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monnama — Tejidos y Crochet hechos a mano",
+    description:
+      "Piezas únicas tejidas a mano por Monika. Crochet y knitting con amor, puntada a puntada.",
+  },
 };
 
 export default function RootLayout({
