@@ -2,6 +2,7 @@ import Link from "next/link";
 import { productos } from "@/data/productos";
 import ProductCard from "@/components/ProductCard";
 import ScrollReveal from "@/components/ScrollReveal";
+import Marquee from "@/components/Marquee";
 
 const destacados = productos.filter((p) => p.disponible).slice(0, 3);
 
@@ -62,6 +63,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Marquee />
 
       {/* Productos destacados */}
       <section className="py-20 px-6 max-w-6xl mx-auto">

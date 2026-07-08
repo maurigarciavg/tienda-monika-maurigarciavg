@@ -15,8 +15,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const producto = productos.find((p) => p.id === id);
+
+  if (!producto) {
+    return { title: "Producto — Monnama" };
+  }
+
+  const title = `${producto.nombre} — Monnama`;
+  const description = `${producto.descripcion} Precio: ${producto.precio}€.`;
+
   return {
-    title: producto ? `${producto.nombre} — Monnama` : "Producto — Monnama",
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: producto.imagen ? [producto.imagen] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: producto.imagen ? [producto.imagen] : undefined,
+    },
   };
 }
 
