@@ -1,12 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="bg-monnama-brown text-monnama-peach py-12 px-6 mt-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p className="font-display text-2xl text-white mb-1">Monnama</p>
-          <p className="text-monnama-peach/70 text-sm">
+          <Image
+            src="/uploads/logo-monnama-removebg-preview.png"
+            alt="Monnama"
+            width={140}
+            height={42}
+            style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+          />
+          <p className="text-monnama-peach/70 text-sm mt-1">
             Tejidos y crochet hechos a mano
           </p>
         </div>
