@@ -57,12 +57,19 @@ export default async function ProductoPage({
 
   return (
     <div className="min-h-screen py-16 px-6 max-w-5xl mx-auto">
-      <Link
-        href="/catalogo"
-        className="text-monnama-brown-mid hover:text-monnama-terra transition-colors text-sm mb-10 inline-block"
-      >
-        ← Volver al catálogo
-      </Link>
+      <nav className="flex items-center gap-2 text-sm text-monnama-brown-mid mb-10">
+        <Link href="/" className="hover:text-monnama-terra transition-colors">
+          Inicio
+        </Link>
+        <span>/</span>
+        <Link href="/catalogo" className="hover:text-monnama-terra transition-colors">
+          Catálogo
+        </Link>
+        <span>/</span>
+        <span className="text-monnama-brown font-medium truncate max-w-[200px]">
+          {producto.nombre}
+        </span>
+      </nav>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
         {/* Imagen */}
