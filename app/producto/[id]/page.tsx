@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import ProductCard from "@/components/ProductCard";
 
 export function generateStaticParams() {
   return productos.map((p) => ({ id: p.id }));
@@ -49,6 +50,10 @@ export default async function ProductoPage({
   const producto = productos.find((p) => p.id === id);
 
   if (!producto) notFound();
+
+  const relacionados = productos
+    .filter((p) => p.id !== producto.id && p.categoria === producto.categoria)
+    .slice(0, 3);
 
   const asunto = encodeURIComponent(`Consulta sobre: ${producto.nombre}`);
   const cuerpo = encodeURIComponent(
@@ -145,6 +150,19 @@ export default async function ProductoPage({
           )}
         </div>
       </div>
+
+      {relacionados.length > 0 && (
+        <section className="mt-20">
+          <h2 className="font-display text-3xl text-monnama-brown mb-8">
+            También te puede gustar
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {relacionados.map((p) => (
+              <ProductCard key={p.id} producto={p} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
