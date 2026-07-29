@@ -133,9 +133,21 @@ export default function CatalogoClient() {
 
       {/* Productos */}
       {productosFiltrados.length === 0 ? (
-        <p className="text-monnama-brown-mid text-center py-20">
-          No hay productos en esta combinación de filtros.
-        </p>
+        <div className="flex flex-col items-center justify-center py-24 text-center gap-4">
+          <span className="text-6xl">🧶</span>
+          <h3 className="font-display text-2xl text-monnama-brown">
+            No hay piezas con esos filtros
+          </h3>
+          <p className="text-monnama-brown-mid max-w-xs">
+            Prueba con otra categoría o técnica, o explora todo el catálogo.
+          </p>
+          <button
+            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); }}
+            className="mt-2 px-6 py-2 rounded-full bg-monnama-terra text-white text-sm font-medium hover:bg-monnama-terra-dark transition-colors duration-200"
+          >
+            Ver todas las piezas
+          </button>
+        </div>
       ) : vista === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {productosFiltrados.map((producto, i) => (
