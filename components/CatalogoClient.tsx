@@ -15,6 +15,12 @@ const categorias: FiltroCategoria[] = [
   "Todas", "Gorros", "Bufandas", "Guantes", "Bolsos", "Amigurumis", "Bebé", "Hogar", "Ropa",
 ];
 
+const countPorCategoria = (c: FiltroCategoria) =>
+  c === "Todas" ? productos.length : productos.filter((p) => p.categoria === c).length;
+
+const countPorTecnica = (t: FiltroTecnica) =>
+  t === "Todas" ? productos.length : productos.filter((p) => p.tecnica === t).length;
+
 const GridIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
     <rect x="1" y="1" width="6" height="6" rx="1" />
@@ -67,7 +73,7 @@ export default function CatalogoClient() {
                     : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
                 }`}
               >
-                {c}
+                {c}{c !== "Todas" && ` (${countPorCategoria(c)})`}
               </button>
             ))}
           </div>
@@ -90,7 +96,7 @@ export default function CatalogoClient() {
                       : "bg-transparent text-monnama-brown-mid border-monnama-brown-mid/50 hover:border-monnama-sage hover:text-monnama-sage"
                   }`}
                 >
-                  {t}
+                  {t}{t !== "Todas" && ` (${countPorTecnica(t)})`}
                 </button>
               ))}
             </div>
