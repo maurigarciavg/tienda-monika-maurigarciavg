@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
+import ShareButton from "@/components/ShareButton";
 
 export function generateStaticParams() {
   return productos.map((p) => ({ id: p.id }));
@@ -102,9 +103,10 @@ export default async function ProductoPage({
           <p className="text-monnama-brown-mid text-lg leading-relaxed mb-6">
             {producto.descripcion}
           </p>
-          <p className="text-3xl font-bold text-monnama-terra mb-8">
+          <p className="text-3xl font-bold text-monnama-terra mb-2">
             {producto.precio}€
           </p>
+          <ShareButton nombre={producto.nombre} />
 
           {producto.disponible ? (
             <div className="space-y-3">

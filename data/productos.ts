@@ -21,7 +21,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Gorros",
     descripcion: "Gorro de pescador tejido a ganchillo, un clásico que no pasa de moda. Ala ancha y estructura firme. Disponible en varios colores bajo pedido.",
-    imagen: "https://picsum.photos/seed/monnama-g1/600/600",
+    imagen: "https://images.unsplash.com/photo-1777898218954-26f1f27f2064?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -31,7 +31,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Gorros",
     descripcion: "Gorro de punto con pompón esponjoso en la parte superior. Tejido con lana gruesa para el frío, suave al tacto y muy abrigado. Ideal para el invierno.",
-    imagen: "https://picsum.photos/seed/monnama-g2/600/600",
+    imagen: "https://images.unsplash.com/photo-1763635838423-a77ae2dbeb48?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -41,7 +41,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Gorros",
     descripcion: "Gorro holgado de estilo slouchy, tejido a dos agujas con lana merino. Se adapta a cualquier cabeza y tiene ese punto casual tan buscado. Unisex.",
-    imagen: "https://picsum.photos/seed/monnama-g3/600/600",
+    imagen: "https://images.unsplash.com/photo-1551103210-9f2409bafcb5?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -51,7 +51,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Gorros",
     descripcion: "Gorro beanie tejido a ganchillo con punto semidouble crochet. Ajustado, cómodo y perfecto para el día a día. Lo hay en más de diez colores.",
-    imagen: "https://picsum.photos/seed/monnama-g4/600/600",
+    imagen: "https://images.unsplash.com/photo-1543340774-522b1f6c92d4?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -61,7 +61,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Gorros",
     descripcion: "Gorro con pinchos de dinosaurio tejido a mano, el favorito de los más pequeños. Divertido, original y muy calentito. Disponible en tallas de 1 a 6 años.",
-    imagen: "https://picsum.photos/seed/monnama-g5/600/600",
+    imagen: "https://images.unsplash.com/photo-1603321581635-d46915755425?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -71,7 +71,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Gorros",
     descripcion: "Gorro de punto con orejeras y lazada bajo la barbilla. Perfecto para los días más fríos. Tejido con lana especialmente suave, sin pica.",
-    imagen: "https://picsum.photos/seed/monnama-g6/600/600",
+    imagen: "https://images.unsplash.com/photo-1707276537359-fe1d42bbe3e0?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -81,7 +81,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Gorros",
     descripcion: "Clásico gorro de punto inglés, esponjoso y elástico. Uno de los más populares por su textura tan característica. Unisex y muy versátil.",
-    imagen: "https://picsum.photos/seed/monnama-g7/600/600",
+    imagen: "https://images.unsplash.com/photo-1573136810265-a584af43f98f?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -93,7 +93,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bufandas",
     descripcion: "Bufanda circular de punto tejida a mano, cómoda y muy versátil. Ideal para los días de frío con un toque artesanal y único que no encontrarás en ninguna tienda.",
-    imagen: "https://picsum.photos/seed/monnama-b1/600/600",
+    imagen: "https://images.unsplash.com/photo-1617442137585-ae532ca1645f?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -103,7 +103,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bufandas",
     descripcion: "Cuello ancho tipo cowl tejido a ganchillo con punto abierto y elegante. Ligero pero abrigado, perfecto para llevar sobre abrigo o chaqueta.",
-    imagen: "https://picsum.photos/seed/monnama-b2/600/600",
+    imagen: "https://images.unsplash.com/photo-1640244670431-8fd282a288fb?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -113,7 +113,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bufandas",
     descripcion: "Bufanda larga de punto con diseño a rayas en dos colores. Clásica y atemporal, del tipo que se lleva cruzada al cuello o suelta. Consulta combinaciones disponibles.",
-    imagen: "https://picsum.photos/seed/monnama-b3/600/600",
+    imagen: "https://images.unsplash.com/photo-1582568982190-cf352ac34525?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -123,7 +123,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bufandas",
     descripcion: "Bufanda de lana gruesa tejida a agujas grandes, muy esponjosa y voluminosa. Perfecta para los días más fríos del invierno. Una pieza de impacto.",
-    imagen: "https://picsum.photos/seed/monnama-b4/600/600",
+    imagen: "https://images.unsplash.com/photo-1543334270-a1c233b25539?w=600&h=600&fit=crop&auto=format",
     disponible: false,
   },
   {
@@ -133,7 +133,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bufandas",
     descripcion: "Cuello-capucha tejido a ganchillo que da calidez y estilo a la vez. Se lleva sobre el abrigo y queda precioso. Disponible en colores neutros y tierra.",
-    imagen: "https://picsum.photos/seed/monnama-b5/600/600",
+    imagen: "https://images.unsplash.com/photo-1543334270-24bb46642afe?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -143,7 +143,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bufandas",
     descripcion: "Bufanda corta para niños tejida a ganchillo con lana hipoalergénica. Suave, fácil de poner y con cierre de botón para que no se escurra.",
-    imagen: "https://picsum.photos/seed/monnama-b6/600/600",
+    imagen: "https://images.unsplash.com/photo-1591660363497-4482d0cedd31?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -155,7 +155,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Guantes",
     descripcion: "Guantes de ganchillo sin dedos, perfectos para usar el móvil sin pasar frío. Elegantes, prácticos y hechos con mucho cariño. Una pieza única para el día a día.",
-    imagen: "https://picsum.photos/seed/monnama-gu1/600/600",
+    imagen: "https://images.unsplash.com/photo-1578302663961-32a9ab587a3a?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -165,7 +165,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Guantes",
     descripcion: "Mitones clásicos de ganchillo que cubren toda la mano. Abrigados, cómodos y con un diseño limpio que queda bien con cualquier abrigo.",
-    imagen: "https://picsum.photos/seed/monnama-gu2/600/600",
+    imagen: "https://images.unsplash.com/photo-1737063207073-8b0bf4705151?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -175,7 +175,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Guantes",
     descripcion: "Guantes largos hasta el codo tejidos a dos agujas. Elegantes y muy calentitos, perfectos para llevar con abrigo o chaqueta de manga corta en invierno.",
-    imagen: "https://picsum.photos/seed/monnama-gu3/600/600",
+    imagen: "https://images.unsplash.com/photo-1737061334765-177954dbe1c9?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -185,7 +185,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Guantes",
     descripcion: "Mitones de punto con diseño de trenza en el dorso de la mano. Un clásico del knitting escandinavo con mucho carácter y personalidad.",
-    imagen: "https://picsum.photos/seed/monnama-gu4/600/600",
+    imagen: "https://images.unsplash.com/photo-1737053590883-8cfabb26ad0f?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -195,7 +195,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Guantes",
     descripcion: "Guantes con punto calado tejidos a ganchillo, delicados y elegantes. Perfectos para temporada de entretiempo o eventos especiales.",
-    imagen: "https://picsum.photos/seed/monnama-gu5/600/600",
+    imagen: "https://images.unsplash.com/photo-1737053632964-419fe29cc939?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -207,7 +207,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Bolso tote de ganchillo tejido con hilo de algodón natural. Amplio, resistente y perfecto para el día a día. Tiene un forro interior de tela para mayor durabilidad.",
-    imagen: "https://picsum.photos/seed/monnama-bo1/600/600",
+    imagen: "https://images.unsplash.com/photo-1776164951104-dfac93903007?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -217,7 +217,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Pequeña mochila tejida a ganchillo con cierre de cordón. Tiene compartimento interior y correas regulables. Un accesorio muy buscado con un toque artesanal único.",
-    imagen: "https://picsum.photos/seed/monnama-bo2/600/600",
+    imagen: "https://images.unsplash.com/photo-1585660558321-b7a05fd13775?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -227,7 +227,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Bolso de forma circular tejido con punto apretado. Con asa superior y cierre de cremallera. Pequeño y elegante, perfecto para salir de noche.",
-    imagen: "https://picsum.photos/seed/monnama-bo3/600/600",
+    imagen: "https://images.unsplash.com/photo-1585660559368-061abdc2dda2?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -237,7 +237,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Bolso de playa y verano tejido con hilo de rafia natural. Amplio, ligero y con ese estilo bohemio y artesanal que combina con todo.",
-    imagen: "https://picsum.photos/seed/monnama-bo4/600/600",
+    imagen: "https://images.unsplash.com/photo-1767605559662-3830975082ee?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -247,7 +247,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Bolso bandolera tejido a ganchillo con correa larga ajustable. Tiene varios compartimentos interiores para llevar todo organizado sin renunciar al estilo.",
-    imagen: "https://picsum.photos/seed/monnama-bo5/600/600",
+    imagen: "https://images.unsplash.com/photo-1772445693242-c176fe7296b7?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -257,7 +257,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Cesta tejida a ganchillo con base rígida, perfecta para organizar el cuarto de baño, el escritorio o la habitación del bebé. Bonita y funcional.",
-    imagen: "https://picsum.photos/seed/monnama-bo6/600/600",
+    imagen: "https://images.unsplash.com/photo-1537081521012-e2f7747a84e7?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -267,7 +267,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bolsos",
     descripcion: "Bolso de red tejido a ganchillo, ideal para hacer la compra o la playa. Ligero, ampliable y con mucho estilo. El complemento sostenible que sustituye a las bolsas de plástico.",
-    imagen: "https://picsum.photos/seed/monnama-bo7/600/600",
+    imagen: "https://images.unsplash.com/photo-1560347964-838d2f63cdc0?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -279,7 +279,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Peluche de amigurumi tejido a mano, lleno de ternura y detalles encantadores. El regalo perfecto para niños y adultos que aprecian el arte del crochet. Personalízalo con tu diseño favorito.",
-    imagen: "https://picsum.photos/seed/monnama-a1/600/600",
+    imagen: "https://images.unsplash.com/photo-1577635515158-dcce4789c8fb?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -289,7 +289,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Osito amigurumi tejido a ganchillo con detalle de nariz bordada y ojos seguros. Un regalo adorable para bebés y niños pequeños. Relleno con material hipoalergénico.",
-    imagen: "https://picsum.photos/seed/monnama-a2/600/600",
+    imagen: "https://images.unsplash.com/photo-1715432755528-46ddd67eab7c?w=600&h=600&fit=crop&auto=format",
     disponible: false,
   },
   {
@@ -299,7 +299,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Conejito amigurumi con orejas largas y cola esponjosa. Tejido a mano con algodón suave, sin elementos pequeños si se pide para bebés.",
-    imagen: "https://picsum.photos/seed/monnama-a3/600/600",
+    imagen: "https://images.unsplash.com/photo-1775484105281-a5e677f2ae40?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -309,7 +309,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Zorrillo amigurumi en tonos naranja y crema. Con hocico bordado y rabito esponjoso. Una pieza preciosa que también sirve como elemento decorativo.",
-    imagen: "https://picsum.photos/seed/monnama-a4/600/600",
+    imagen: "https://images.unsplash.com/photo-1629019317873-3f603b269723?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -319,7 +319,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Pingüinito amigurumi en negro y blanco con detalle de bufanda de color. Compacto y muy abrazable. Un clásico entre los amigurumis más populares.",
-    imagen: "https://picsum.photos/seed/monnama-a5/600/600",
+    imagen: "https://images.unsplash.com/photo-1779433755935-991480f06b98?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -329,7 +329,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Elefante amigurumi con trompa curvada y grandes orejas. Tejido en gris suave con detalles en rosa. Uno de los diseños más especiales de Monnama.",
-    imagen: "https://picsum.photos/seed/monnama-a6/600/600",
+    imagen: "https://images.unsplash.com/photo-1753370241607-5d48d8aaa70e?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -339,7 +339,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Amigurumis",
     descripcion: "Gatito amigurumi con bigotes de hilo y orejas puntiagudas. Existe inspirado en Miki, el gato de la artesana. Cada uno sale con su propia personalidad.",
-    imagen: "https://picsum.photos/seed/monnama-a7/600/600",
+    imagen: "https://images.unsplash.com/photo-1692979708850-54e6a5b612f6?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -351,7 +351,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bebé",
     descripcion: "Adorable gorro de ganchillo para bebé, tejido a mano con lana suave y cálida. Perfecto para mantener calentitos a los más pequeños. Disponible en distintos colores bajo pedido.",
-    imagen: "https://picsum.photos/seed/monnama-be1/600/600",
+    imagen: "https://images.unsplash.com/photo-1771046749660-9e73020a142d?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -361,7 +361,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bebé",
     descripcion: "Patucos de ganchillo para bebé, tejidos con lana merino extrafina. Suaves como una caricia, no irritan la piel del bebé. Disponibles de 0 a 12 meses.",
-    imagen: "https://picsum.photos/seed/monnama-be2/600/600",
+    imagen: "https://images.unsplash.com/photo-1604917621956-10dfa7cce2e7?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -371,7 +371,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bebé",
     descripcion: "Manta de punto para bebé tejida con lana suave e hipoalergénica. Tamaño ideal para la cuna o el carrito. Un regalo de nacimiento muy especial y duradero.",
-    imagen: "https://picsum.photos/seed/monnama-be3/600/600",
+    imagen: "https://images.unsplash.com/photo-1704846055689-293cbeac5049?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -381,7 +381,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bebé",
     descripcion: "Diadema de ganchillo para bebé con pequeño lazo o flor. Elástica y suave, no aprieta la cabeza. El complemento más dulce para las fotos del recién nacido.",
-    imagen: "https://picsum.photos/seed/monnama-be4/600/600",
+    imagen: "https://images.unsplash.com/photo-1591051649443-453d2e0a716d?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -391,7 +391,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bebé",
     descripcion: "Jersey de punto para bebé tejido con lana merino suave. Botones laterales para facilitar el vestido. Una prenda atemporal que también puede guardarse de recuerdo.",
-    imagen: "https://picsum.photos/seed/monnama-be5/600/600",
+    imagen: "https://images.unsplash.com/photo-1576376262099-6ec3ed655f52?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -401,7 +401,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Bebé",
     descripcion: "Chaqueta de ganchillo para bebé con capucha. Tejida con algodón peinado suave y lavable a máquina. Disponible del 0 al 24 meses.",
-    imagen: "https://picsum.photos/seed/monnama-be6/600/600",
+    imagen: "https://images.unsplash.com/photo-1648005539099-709d5be525fb?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -411,7 +411,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Bebé",
     descripcion: "Manoplas de punto para bebé, suaves y con elástico suave para que no se caigan. Imprescindibles para los primeros meses y un regalo de nacimiento muy práctico.",
-    imagen: "https://picsum.photos/seed/monnama-be7/600/600",
+    imagen: "https://images.unsplash.com/photo-1597736091383-084fa1b69a6a?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -423,7 +423,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Hogar",
     descripcion: "Funda de cojín de punto con cierre de cremallera. Tejida con lana gruesa en relieve, da textura y calidez a cualquier sofá o cama. Consulta medidas disponibles.",
-    imagen: "https://picsum.photos/seed/monnama-h1/600/600",
+    imagen: "https://images.unsplash.com/photo-1761206887095-e57f9ae4a06f?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -433,7 +433,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Hogar",
     descripcion: "Manta grande de punto para el sofá, tejida con lana chunky. Acogedora, bonita y perfecta para el invierno. Una pieza que le da carácter a cualquier salón.",
-    imagen: "https://picsum.photos/seed/monnama-h2/600/600",
+    imagen: "https://images.unsplash.com/photo-1731404247714-f19f610b32d4?w=600&h=600&fit=crop&auto=format",
     disponible: false,
   },
   {
@@ -443,7 +443,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Hogar",
     descripcion: "Colgador para macetas tejido a ganchillo con hilo de algodón natural. Un toque bohemio y natural para cualquier rincón de la casa. Incluye instrucciones de cuidado.",
-    imagen: "https://picsum.photos/seed/monnama-h3/600/600",
+    imagen: "https://images.unsplash.com/photo-1707143523718-64d0769fc007?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -453,7 +453,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Hogar",
     descripcion: "Set de 4 posavasos tejidos a ganchillo con algodón natural. Redondos, resistentes al calor y fáciles de lavar. Un detalle bonito y práctico para la mesa.",
-    imagen: "https://picsum.photos/seed/monnama-h4/600/600",
+    imagen: "https://images.unsplash.com/photo-1705201968175-6d9b2ecf23c0?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -463,7 +463,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Hogar",
     descripcion: "Funda de cojín tejida a ganchillo con punto calado floral. Añade un toque artesanal y delicado a tu salón o dormitorio. Consulta medidas y colores disponibles.",
-    imagen: "https://picsum.photos/seed/monnama-h5/600/600",
+    imagen: "https://images.unsplash.com/photo-1767193959809-1df4e34c69f9?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -473,7 +473,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Hogar",
     descripcion: "Camino de mesa tejido a ganchillo con hilo de algodón mercerizado. Elegante, lavable y perfecto para dar un toque especial a la mesa del comedor.",
-    imagen: "https://picsum.photos/seed/monnama-h6/600/600",
+    imagen: "https://images.unsplash.com/photo-1700249614856-77df0cc1d612?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -483,7 +483,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Hogar",
     descripcion: "Salvamanteles redondo tejido a ganchillo. Resistente al calor moderado y muy fácil de limpiar. Un accesorio bonito que protege tu mesa con estilo.",
-    imagen: "https://picsum.photos/seed/monnama-h7/600/600",
+    imagen: "https://images.unsplash.com/photo-1700249627094-a255c5eba33c?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 
@@ -495,7 +495,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Ropa",
     descripcion: "Jersey de punto tejido a mano con lana merino de calidad. Cuello redondo, manga larga y punto liso con costuras reforzadas. Una prenda para toda la vida.",
-    imagen: "https://picsum.photos/seed/monnama-r1/600/600",
+    imagen: "https://images.unsplash.com/photo-1753874383964-b9b77a9ebc08?w=600&h=600&fit=crop&auto=format",
     disponible: false,
   },
   {
@@ -505,7 +505,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Ropa",
     descripcion: "Chaleco sin mangas tejido a ganchillo con motivos florales. Perfecto sobre una camiseta blanca en primavera o sobre una camisa en otoño. Totalmente único.",
-    imagen: "https://picsum.photos/seed/monnama-r2/600/600",
+    imagen: "https://images.unsplash.com/photo-1767249606821-11b6fa4f4bc4?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -515,7 +515,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Ropa",
     descripcion: "Top de ganchillo para verano, con punto abierto y tiras ajustables. Tejido con hilo de algodón fino, fresco y ligero. Ideal para la playa o el festival.",
-    imagen: "https://picsum.photos/seed/monnama-r3/600/600",
+    imagen: "https://images.unsplash.com/photo-1782929089798-261f17a0b668?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
@@ -525,7 +525,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Ropa",
     descripcion: "Cardigan largo abierto de punto, sin botones. Tejido con lana suave en tono neutro, es el complemento perfecto para cualquier look de temporada. Unisex.",
-    imagen: "https://picsum.photos/seed/monnama-r4/600/600",
+    imagen: "https://images.unsplash.com/photo-1771828568534-521ca21c184f?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
 ];

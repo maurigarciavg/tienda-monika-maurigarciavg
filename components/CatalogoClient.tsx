@@ -15,6 +15,12 @@ const categorias: FiltroCategoria[] = [
   "Todas", "Gorros", "Bufandas", "Guantes", "Bolsos", "Amigurumis", "Bebé", "Hogar", "Ropa",
 ];
 
+const countPorCategoria = (c: FiltroCategoria) =>
+  c === "Todas" ? productos.length : productos.filter((p) => p.categoria === c).length;
+
+const countPorTecnica = (t: FiltroTecnica) =>
+  t === "Todas" ? productos.length : productos.filter((p) => p.tecnica === t).length;
+
 const GridIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
     <rect x="1" y="1" width="6" height="6" rx="1" />
@@ -67,7 +73,7 @@ export default function CatalogoClient() {
                     : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
                 }`}
               >
-                {c}
+                {c}{c !== "Todas" && ` (${countPorCategoria(c)})`}
               </button>
             ))}
           </div>
@@ -90,7 +96,7 @@ export default function CatalogoClient() {
                       : "bg-transparent text-monnama-brown-mid border-monnama-brown-mid/50 hover:border-monnama-sage hover:text-monnama-sage"
                   }`}
                 >
-                  {t}
+                  {t}{t !== "Todas" && ` (${countPorTecnica(t)})`}
                 </button>
               ))}
             </div>
@@ -133,9 +139,21 @@ export default function CatalogoClient() {
 
       {/* Productos */}
       {productosFiltrados.length === 0 ? (
-        <p className="text-monnama-brown-mid text-center py-20">
-          No hay productos en esta combinación de filtros.
-        </p>
+        <div className="flex flex-col items-center justify-center py-24 text-center gap-4">
+          <span className="text-6xl">🧶</span>
+          <h3 className="font-display text-2xl text-monnama-brown">
+            No hay piezas con esos filtros
+          </h3>
+          <p className="text-monnama-brown-mid max-w-xs">
+            Prueba con otra categoría o técnica, o explora todo el catálogo.
+          </p>
+          <button
+            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); }}
+            className="mt-2 px-6 py-2 rounded-full bg-monnama-terra text-white text-sm font-medium hover:bg-monnama-terra-dark transition-colors duration-200"
+          >
+            Ver todas las piezas
+          </button>
+        </div>
       ) : vista === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {productosFiltrados.map((producto, i) => (
