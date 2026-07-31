@@ -99,6 +99,73 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
+      {/* Cómo comprar */}
+      <section className="py-20 px-6 bg-monnama-surface">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <h2 className="font-display text-4xl text-monnama-brown mb-3">
+                ¿Cómo comprar?
+              </h2>
+              <p className="text-monnama-brown-mid">
+                Sin complicaciones, como debe ser.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                step: "01",
+                icon: "🧶",
+                title: "Elige tu pieza",
+                desc: "Explora el catálogo y encuentra la pieza que enamora. Cada una es única y hecha a mano.",
+              },
+              {
+                step: "02",
+                icon: "💬",
+                title: "Contáctame",
+                desc: "Escríbeme por Instagram o email. Te confirmo disponibilidad y te cuento todos los detalles.",
+              },
+              {
+                step: "03",
+                icon: "📦",
+                title: "Recíbela con amor",
+                desc: "Tu pieza llega envuelta con mimo, lista para regalar o para disfrutar tú misma.",
+              },
+            ].map(({ step, icon, title, desc }, i) => (
+              <ScrollReveal key={step} delay={i * 120}>
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-xs font-bold tracking-widest text-monnama-terra/50 mb-3">
+                    {step}
+                  </span>
+                  <span className="text-5xl mb-4">{icon}</span>
+                  <h3 className="font-display text-xl text-monnama-brown mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-monnama-brown-mid text-sm leading-relaxed">
+                    {desc}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal delay={300}>
+            <div className="text-center mt-14">
+              <a
+                href="https://www.instagram.com/made_bymonnama"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-monnama-terra hover:bg-monnama-terra-dark text-white px-8 py-4 rounded-full font-medium transition-colors duration-200"
+              >
+                Contactar por Instagram
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Teaser sobre Monnama */}
       <ScrollReveal>
         <section className="bg-monnama-peach py-20 px-6">
