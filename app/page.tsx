@@ -66,6 +66,24 @@ export default function Home() {
 
       <Marquee />
 
+      {/* Cifras */}
+      <section className="py-16 px-6 bg-monnama-brown">
+        <ScrollReveal>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+            {[
+              { value: "100+", label: "Piezas tejidas" },
+              { value: "5 años", label: "Creando con amor" },
+              { value: "50+", label: "Clientas felices" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <p className="font-display text-5xl text-monnama-terra mb-2">{value}</p>
+                <p className="text-monnama-cream/70 text-sm tracking-wide uppercase">{label}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Productos destacados */}
       <section className="py-20 px-6 max-w-6xl mx-auto">
         <ScrollReveal>
