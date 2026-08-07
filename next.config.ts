@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.fbcdn.net",
       },
+      {
+        protocol: "https",
+        hostname: "nanascraftyhome.com",
+      },
     ],
   },
 };

@@ -21,7 +21,7 @@ export const productos: Producto[] = [
     tecnica: "Crochet",
     categoria: "Gorros",
     descripcion: "Gorro de pescador tejido a ganchillo, un clásico que no pasa de moda. Ala ancha y estructura firme. Disponible en varios colores bajo pedido.",
-    imagen: "https://images.unsplash.com/photo-1777898218954-26f1f27f2064?w=600&h=600&fit=crop&auto=format",
+    imagen: "https://nanascraftyhome.com/wp-content/uploads/2026/04/Basic-Bucket-Hat-2-scaled.jpg",
     disponible: true,
   },
   {
@@ -31,7 +31,7 @@ export const productos: Producto[] = [
     tecnica: "Knitting",
     categoria: "Gorros",
     descripcion: "Gorro de punto con pompón esponjoso en la parte superior. Tejido con lana gruesa para el frío, suave al tacto y muy abrigado. Ideal para el invierno.",
-    imagen: "https://images.unsplash.com/photo-1763635838423-a77ae2dbeb48?w=600&h=600&fit=crop&auto=format",
+    imagen: "https://images.unsplash.com/photo-1578019857395-bcfccf0ffb30?w=600&h=600&fit=crop&auto=format",
     disponible: true,
   },
   {
