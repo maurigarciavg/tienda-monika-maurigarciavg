@@ -2,12 +2,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { Producto } from "@/data/productos";
 
-export default function ProductCard({ producto }: { producto: Producto }) {
+type Locale = "es" | "en";
+
+export default function ProductCard({
+  producto,
+  locale = "es",
+}: {
+  producto: Producto;
+  locale?: Locale;
+}) {
   const agotado = !producto.disponible;
+  const soldLabel = locale === "en" ? "Sold out" : "Agotado";
+  const handmadeLabel = locale === "en" ? "Handmade" : "Hecho a mano";
+  const viewLabel = locale === "en" ? "View →" : "Ver pieza →";
+  const href = locale === "en" ? `/en/producto/${producto.id}` : `/producto/${producto.id}`;
 
   return (
     <Link
-      href={`/producto/${producto.id}`}
+      href={href}
       className={`group block ${agotado ? "cursor-default" : ""}`}
     >
       <div
@@ -33,7 +45,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           {!agotado && (
             <div className="absolute inset-0 bg-monnama-brown/0 group-hover:bg-monnama-brown/30 transition-colors duration-300 flex items-center justify-center">
               <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                Ver pieza →
+                {viewLabel}
               </span>
             </div>
           )}
@@ -42,7 +54,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           </span>
           {agotado && (
             <span className="absolute top-3 right-3 bg-gray-800 text-white text-xs font-medium px-3 py-1 rounded-full">
-              Agotado
+              {soldLabel}
             </span>
           )}
         </div>
@@ -64,7 +76,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-monnama-sage opacity-60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-monnama-sage" />
                 </span>
-                Hecho a mano
+                {handmadeLabel}
               </span>
             )}
           </div>

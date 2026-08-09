@@ -5,6 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import MobileContactBar from "@/components/MobileContactBar";
+import { headers } from "next/headers";
+
+type Locale = "es" | "en";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,21 +41,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = await headers();
+  const locale = (headersList.get("x-locale") ?? "es") as Locale;
+
   return (
-    <html lang="es">
+    <html lang={locale}>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
-        <Navbar />
+        <Navbar locale={locale} />
         <main>{children}</main>
-        <Footer />
+        <Footer locale={locale} />
         <ScrollToTop />
-        <MobileContactBar />
+        <MobileContactBar locale={locale} />
       </body>
     </html>
   );
