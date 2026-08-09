@@ -17,7 +17,7 @@ export default function ProductCard({ producto }: { producto: Producto }) {
             : "hover:shadow-xl hover:shadow-monnama-terra/20 hover:-translate-y-1.5"
         }`}
       >
-        <div className="aspect-square relative bg-monnama-peach/50 flex items-center justify-center">
+        <div className="aspect-square relative bg-monnama-peach/50 flex items-center justify-center overflow-hidden">
           {producto.imagen ? (
             <Image
               src={producto.imagen}
@@ -29,6 +29,13 @@ export default function ProductCard({ producto }: { producto: Producto }) {
             />
           ) : (
             <span className="text-6xl">🧶</span>
+          )}
+          {!agotado && (
+            <div className="absolute inset-0 bg-monnama-brown/0 group-hover:bg-monnama-brown/30 transition-colors duration-300 flex items-center justify-center">
+              <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                Ver pieza →
+              </span>
+            </div>
           )}
           <span className="absolute top-3 left-3 bg-white/90 text-monnama-terra text-xs font-medium px-3 py-1 rounded-full">
             {producto.tecnica}
@@ -47,9 +54,20 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           >
             {producto.nombre}
           </h3>
-          <p className={`font-bold text-lg ${agotado ? "text-monnama-brown-mid" : "text-monnama-terra"}`}>
-            {producto.precio}€
-          </p>
+          <div className="flex items-center justify-between mt-1">
+            <p className={`font-bold text-lg ${agotado ? "text-monnama-brown-mid" : "text-monnama-terra"}`}>
+              {producto.precio}€
+            </p>
+            {!agotado && (
+              <span className="flex items-center gap-1 text-xs text-monnama-brown-mid/70">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-monnama-sage opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-monnama-sage" />
+                </span>
+                Hecho a mano
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Link>
