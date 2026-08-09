@@ -10,27 +10,29 @@ const HISPANIC_COUNTRIES = new Set([
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isEnPath = pathname.startsWith("/en");
+  const locale = isEnPath ? "en" : "es";
 
-  const response = NextResponse.next();
-  response.headers.set("x-locale", isEnPath ? "en" : "es");
+  // Forward x-locale on the REQUEST so server components can read it via headers()
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", locale);
 
-  // Only auto-redirect on first visit (no locale cookie set yet)
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
+
+  // Auto-redirect on first visit only (no locale cookie yet)
   const localeCookie = request.cookies.get("monnama-locale")?.value;
-  if (localeCookie) return response;
+  if (!localeCookie) {
+    const country = request.headers.get("x-vercel-ip-country") ?? "";
+    const detectedLocale = HISPANIC_COUNTRIES.has(country) ? "es" : "en";
 
-  const country = request.headers.get("x-vercel-ip-country") ?? "";
-  const detectedLocale = HISPANIC_COUNTRIES.has(country) ? "es" : "en";
+    if (detectedLocale === "en" && !isEnPath) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/en${pathname === "/" ? "" : pathname}`;
+      const redirect = NextResponse.redirect(url, { status: 302 });
+      redirect.cookies.set("monnama-locale", "en", { maxAge: 60 * 60 * 24 * 30, path: "/" });
+      return redirect;
+    }
 
-  if (detectedLocale === "en" && !isEnPath) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/en${pathname === "/" ? "" : pathname}`;
-    const redirect = NextResponse.redirect(url, { status: 302 });
-    redirect.cookies.set("monnama-locale", "en", { maxAge: 60 * 60 * 24 * 30 });
-    return redirect;
-  }
-
-  if (detectedLocale === "es") {
-    response.cookies.set("monnama-locale", "es", { maxAge: 60 * 60 * 24 * 30 });
+    response.cookies.set("monnama-locale", detectedLocale, { maxAge: 60 * 60 * 24 * 30, path: "/" });
   }
 
   return response;

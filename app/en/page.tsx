@@ -42,7 +42,7 @@ export default function HomeEn() {
         </div>
       </section>
 
-      <Marquee />
+      <Marquee locale="en" />
 
       {/* Stats */}
       <section className="py-16 px-6 bg-monnama-brown">
