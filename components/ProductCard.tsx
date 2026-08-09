@@ -54,9 +54,20 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           >
             {producto.nombre}
           </h3>
-          <p className={`font-bold text-lg ${agotado ? "text-monnama-brown-mid" : "text-monnama-terra"}`}>
-            {producto.precio}€
-          </p>
+          <div className="flex items-center justify-between mt-1">
+            <p className={`font-bold text-lg ${agotado ? "text-monnama-brown-mid" : "text-monnama-terra"}`}>
+              {producto.precio}€
+            </p>
+            {!agotado && (
+              <span className="flex items-center gap-1 text-xs text-monnama-brown-mid/70">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-monnama-sage opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-monnama-sage" />
+                </span>
+                Hecho a mano
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Link>
