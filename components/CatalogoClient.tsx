@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import ProductCardLookbook from "@/components/ProductCardLookbook";
 import ScrollReveal from "@/components/ScrollReveal";
 
+type Locale = "es" | "en";
 type FiltroTecnica = "Todas" | Tecnica;
 type FiltroCategoria = "Todas" | Categoria;
 type Vista = "grid" | "lookbook";
@@ -14,6 +15,16 @@ const tecnicas: FiltroTecnica[] = ["Todas", "Crochet", "Knitting"];
 const categorias: FiltroCategoria[] = [
   "Todas", "Gorros", "Bufandas", "Guantes", "Bolsos", "Amigurumis", "Bebé", "Hogar", "Ropa",
 ];
+
+const CATEGORY_LABELS: Record<Locale, Record<FiltroCategoria, string>> = {
+  es: { Todas: "Todas", Gorros: "Gorros", Bufandas: "Bufandas", Guantes: "Guantes", Bolsos: "Bolsos", Amigurumis: "Amigurumis", "Bebé": "Bebé", Hogar: "Hogar", Ropa: "Ropa" },
+  en: { Todas: "All", Gorros: "Hats", Bufandas: "Scarves", Guantes: "Gloves", Bolsos: "Bags", Amigurumis: "Amigurumis", "Bebé": "Baby", Hogar: "Home", Ropa: "Clothing" },
+};
+
+const TECHNIQUE_LABELS: Record<Locale, Record<FiltroTecnica, string>> = {
+  es: { Todas: "Todas", Crochet: "Crochet", Knitting: "Knitting" },
+  en: { Todas: "All", Crochet: "Crochet", Knitting: "Knitting" },
+};
 
 const countPorCategoria = (c: FiltroCategoria) =>
   c === "Todas" ? productos.length : productos.filter((p) => p.categoria === c).length;
@@ -38,10 +49,14 @@ const LookbookIcon = () => (
   </svg>
 );
 
-export default function CatalogoClient() {
+export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
   const [tecnica, setTecnica] = useState<FiltroTecnica>("Todas");
   const [categoria, setCategoria] = useState<FiltroCategoria>("Todas");
   const [vista, setVista] = useState<Vista>("grid");
+
+  const catLabels = CATEGORY_LABELS[locale];
+  const techLabels = TECHNIQUE_LABELS[locale];
+  const allLabel = locale === "en" ? "All" : "Todas";
 
   const filtrar = (p: (typeof productos)[0]) => {
     const matchTecnica = tecnica === "Todas" || p.tecnica === tecnica;
@@ -53,14 +68,23 @@ export default function CatalogoClient() {
   const agotados = productos.filter((p) => filtrar(p) && !p.disponible);
   const productosFiltrados = [...disponibles, ...agotados];
 
+  const pieceLabel = locale === "en"
+    ? productosFiltrados.length === 1 ? "piece" : "pieces"
+    : productosFiltrados.length === 1 ? "pieza" : "piezas";
+  const foundLabel = locale === "en" ? "found" : "encontradas";
+  const emptyTitle = locale === "en" ? "No pieces match those filters" : "No hay piezas con esos filtros";
+  const emptyText = locale === "en" ? "Try a different category or technique, or browse all pieces." : "Prueba con otra categoría o técnica, o explora todo el catálogo.";
+  const emptyBtn = locale === "en" ? "View all pieces" : "Ver todas las piezas";
+  const categoryLabel = locale === "en" ? "Category" : "Categoría";
+  const techniqueLabel = locale === "en" ? "Technique" : "Técnica";
+
   return (
     <>
-      {/* Controles: filtros + vista */}
+      {/* Filtros + vista */}
       <div className="flex flex-col gap-4 mb-10">
-        {/* Filtro categoría */}
         <div>
           <p className="text-xs font-medium text-monnama-brown-mid uppercase tracking-wider mb-2">
-            Categoría
+            {categoryLabel}
           </p>
           <div className="flex gap-2 flex-wrap">
             {categorias.map((c) => (
@@ -73,17 +97,16 @@ export default function CatalogoClient() {
                     : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
                 }`}
               >
-                {c}{c !== "Todas" && ` (${countPorCategoria(c)})`}
+                {catLabels[c]}{c !== "Todas" && ` (${countPorCategoria(c)})`}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Filtro técnica + toggle vista */}
         <div className="flex items-end justify-between gap-4 flex-wrap">
           <div>
             <p className="text-xs font-medium text-monnama-brown-mid uppercase tracking-wider mb-2">
-              Técnica
+              {techniqueLabel}
             </p>
             <div className="flex gap-2 flex-wrap">
               {tecnicas.map((t) => (
@@ -96,32 +119,27 @@ export default function CatalogoClient() {
                       : "bg-transparent text-monnama-brown-mid border-monnama-brown-mid/50 hover:border-monnama-sage hover:text-monnama-sage"
                   }`}
                 >
-                  {t}{t !== "Todas" && ` (${countPorTecnica(t)})`}
+                  {techLabels[t]}{t !== "Todas" && ` (${countPorTecnica(t)})`}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Toggle grid / lookbook */}
           <div className="flex items-center gap-1 bg-monnama-surface rounded-lg p-1">
             <button
               onClick={() => setVista("grid")}
-              title="Vista cuadrícula"
+              title={locale === "en" ? "Grid view" : "Vista cuadrícula"}
               className={`p-2 rounded-md transition-colors duration-200 ${
-                vista === "grid"
-                  ? "bg-white text-monnama-terra shadow-sm"
-                  : "text-monnama-brown-mid hover:text-monnama-brown"
+                vista === "grid" ? "bg-white text-monnama-terra shadow-sm" : "text-monnama-brown-mid hover:text-monnama-brown"
               }`}
             >
               <GridIcon />
             </button>
             <button
               onClick={() => setVista("lookbook")}
-              title="Vista lookbook"
+              title="Lookbook"
               className={`p-2 rounded-md transition-colors duration-200 ${
-                vista === "lookbook"
-                  ? "bg-white text-monnama-terra shadow-sm"
-                  : "text-monnama-brown-mid hover:text-monnama-brown"
+                vista === "lookbook" ? "bg-white text-monnama-terra shadow-sm" : "text-monnama-brown-mid hover:text-monnama-brown"
               }`}
             >
               <LookbookIcon />
@@ -132,33 +150,28 @@ export default function CatalogoClient() {
 
       {/* Contador */}
       <p className="text-monnama-brown-mid text-sm mb-6">
-        {productosFiltrados.length}{" "}
-        {productosFiltrados.length === 1 ? "pieza" : "piezas"}
-        {(categoria !== "Todas" || tecnica !== "Todas") && " encontradas"}
+        {productosFiltrados.length} {pieceLabel}
+        {(categoria !== "Todas" || tecnica !== "Todas") && ` ${foundLabel}`}
       </p>
 
       {/* Productos */}
       {productosFiltrados.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-center gap-4">
           <span className="text-6xl">🧶</span>
-          <h3 className="font-display text-2xl text-monnama-brown">
-            No hay piezas con esos filtros
-          </h3>
-          <p className="text-monnama-brown-mid max-w-xs">
-            Prueba con otra categoría o técnica, o explora todo el catálogo.
-          </p>
+          <h3 className="font-display text-2xl text-monnama-brown">{emptyTitle}</h3>
+          <p className="text-monnama-brown-mid max-w-xs">{emptyText}</p>
           <button
             onClick={() => { setCategoria("Todas"); setTecnica("Todas"); }}
             className="mt-2 px-6 py-2 rounded-full bg-monnama-terra text-white text-sm font-medium hover:bg-monnama-terra-dark transition-colors duration-200"
           >
-            Ver todas las piezas
+            {emptyBtn}
           </button>
         </div>
       ) : vista === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {productosFiltrados.map((producto, i) => (
-            <ScrollReveal key={producto.id} delay={(i % 3) * 100} >
-              <ProductCard producto={producto} />
+            <ScrollReveal key={producto.id} delay={(i % 3) * 100}>
+              <ProductCard producto={producto} locale={locale} />
             </ScrollReveal>
           ))}
         </div>
@@ -166,7 +179,7 @@ export default function CatalogoClient() {
         <div className="flex flex-col gap-6">
           {productosFiltrados.map((producto, i) => (
             <ScrollReveal key={producto.id} delay={80}>
-              <ProductCardLookbook producto={producto} index={i} />
+              <ProductCardLookbook producto={producto} index={i} locale={locale} />
             </ScrollReveal>
           ))}
         </div>

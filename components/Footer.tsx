@@ -1,7 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Footer() {
+type Locale = "es" | "en";
+
+const FOOTER_LINKS = {
+  es: [
+    { href: "/catalogo", label: "Catálogo" },
+    { href: "/sobre-monnama", label: "Sobre Monnama" },
+    { href: "/contacto", label: "Contacto" },
+  ],
+  en: [
+    { href: "/en/catalogo", label: "Catalog" },
+    { href: "/en/sobre-monnama", label: "About" },
+    { href: "/en/contacto", label: "Contact" },
+  ],
+};
+
+export default function Footer({ locale = "es" }: { locale?: Locale }) {
+  const links = FOOTER_LINKS[locale];
+  const tagline = locale === "en" ? "Handmade knitwear & crochet" : "Tejidos y crochet hechos a mano";
+
   return (
     <footer className="bg-monnama-brown text-monnama-peach py-12 px-6 mt-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -13,27 +31,15 @@ export default function Footer() {
             height={42}
             style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
-          <p className="text-monnama-peach/70 text-sm mt-1">
-            Tejidos y crochet hechos a mano
-          </p>
+          <p className="text-monnama-peach/70 text-sm mt-1">{tagline}</p>
         </div>
 
         <nav className="flex gap-6 text-sm">
-          <Link href="/catalogo" className="hover:text-white transition-colors">
-            Catálogo
-          </Link>
-          <Link
-            href="/sobre-monnama"
-            className="hover:text-white transition-colors"
-          >
-            Sobre Monnama
-          </Link>
-          <Link
-            href="/contacto"
-            className="hover:text-white transition-colors"
-          >
-            Contacto
-          </Link>
+          {links.map(({ href, label }) => (
+            <Link key={href} href={href} className="hover:text-white transition-colors">
+              {label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -49,7 +55,7 @@ export default function Footer() {
             </svg>
           </a>
           <p className="text-monnama-peach/50 text-xs">
-            © {new Date().getFullYear()} Monnama. Hecho con 🧶
+            © {new Date().getFullYear()} Monnama. {locale === "en" ? "Made with" : "Hecho con"} 🧶
           </p>
         </div>
       </div>

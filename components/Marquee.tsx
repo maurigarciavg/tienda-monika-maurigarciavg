@@ -1,15 +1,29 @@
-const items = [
-  "Hecho a mano",
-  "Crochet",
-  "Knitting",
-  "Piezas únicas",
-  "Granada",
-  "Con amor",
-  "Sin producción en serie",
-  "Tejido a mano",
-];
+type Locale = "es" | "en";
 
-function MarqueeItems({ keyPrefix }: { keyPrefix: number }) {
+const ITEMS: Record<Locale, string[]> = {
+  es: [
+    "Hecho a mano",
+    "Crochet",
+    "Knitting",
+    "Piezas únicas",
+    "Granada",
+    "Con amor",
+    "Sin producción en serie",
+    "Tejido a mano",
+  ],
+  en: [
+    "Handmade",
+    "Crochet",
+    "Knitting",
+    "Unique pieces",
+    "Granada",
+    "With love",
+    "Hand-knitted",
+    "Made with care",
+  ],
+};
+
+function MarqueeItems({ items, keyPrefix }: { items: string[]; keyPrefix: number }) {
   return (
     <>
       {items.map((item, i) => (
@@ -27,7 +41,8 @@ function MarqueeItems({ keyPrefix }: { keyPrefix: number }) {
   );
 }
 
-export default function Marquee() {
+export default function Marquee({ locale = "es" }: { locale?: Locale }) {
+  const items = ITEMS[locale];
   return (
     <div
       className="w-full overflow-hidden py-5 select-none"
@@ -39,8 +54,8 @@ export default function Marquee() {
       }}
     >
       <div className="marquee-track flex w-max">
-        <MarqueeItems keyPrefix={0} />
-        <MarqueeItems keyPrefix={1} />
+        <MarqueeItems items={items} keyPrefix={0} />
+        <MarqueeItems items={items} keyPrefix={1} />
       </div>
     </div>
   );

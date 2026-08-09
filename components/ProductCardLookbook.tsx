@@ -2,17 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { Producto } from "@/data/productos";
 
+type Locale = "es" | "en";
+
 export default function ProductCardLookbook({
   producto,
   index,
+  locale = "es",
 }: {
   producto: Producto;
   index: number;
+  locale?: Locale;
 }) {
   const reversed = index % 2 === 1;
 
+  const href = locale === "en" ? `/en/producto/${producto.id}` : `/producto/${producto.id}`;
+  const viewLabel = locale === "en" ? "View piece →" : "Ver pieza →";
+  const soldLabel = locale === "en" ? "Sold out" : "Agotado";
+
   return (
-    <Link href={`/producto/${producto.id}`} className="group block">
+    <Link href={href} className="group block">
       <div
         className={`flex flex-col ${reversed ? "md:flex-row-reverse" : "md:flex-row"} bg-monnama-surface rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500`}
       >
@@ -32,7 +40,7 @@ export default function ProductCardLookbook({
           )}
           {!producto.disponible && (
             <span className="absolute top-4 left-4 bg-gray-800/90 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-              Agotado
+              {soldLabel}
             </span>
           )}
           <span className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm text-monnama-terra text-xs font-medium px-3 py-1.5 rounded-full">
@@ -56,7 +64,7 @@ export default function ProductCardLookbook({
               {producto.precio}€
             </p>
             <span className="text-sm font-medium text-monnama-brown-mid group-hover:text-monnama-terra transition-colors duration-300">
-              Ver pieza →
+              {viewLabel}
             </span>
           </div>
         </div>
