@@ -6,7 +6,7 @@ import Marquee from "@/components/Marquee";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Monnama — Handmade Knitwear & Crochet",
+  title: "Unravelled Corner — Handmade Knitwear & Crochet",
   description: "Unique handmade pieces by Monika. Crochet and knitting made with love, stitch by stitch.",
 };
 
@@ -125,11 +125,11 @@ export default function HomeEn() {
       <ScrollReveal>
         <section className="bg-monnama-peach py-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-display text-4xl text-monnama-brown mb-6">The soul behind Monnama</h2>
+            <h2 className="font-display text-4xl text-monnama-brown mb-6">The soul behind Unravelled Corner</h2>
             <p className="text-monnama-brown-mid text-lg leading-relaxed max-w-2xl mx-auto mb-8">
               Every stitch, every row, every piece carries Monika&apos;s time and care. Nothing is mass-produced. Everything is unique, like you.
             </p>
-            <Link href="/en/sobre-monnama" className="text-monnama-terra font-medium hover:text-monnama-terra-dark underline underline-offset-4 transition-colors">
+            <Link href="/en/sobre-monika" className="text-monnama-terra font-medium hover:text-monnama-terra-dark underline underline-offset-4 transition-colors">
               Meet the maker →
             </Link>
           </div>
@@ -188,7 +188,7 @@ export default function HomeEn() {
                 </svg>
                 Order on Instagram
               </a>
-              <a href="mailto:monnama.tienda@gmail.com?subject=Custom order" className="inline-flex items-center justify-center gap-2 border-2 border-monnama-cream/40 text-monnama-cream hover:border-monnama-cream hover:bg-monnama-cream/10 px-8 py-4 rounded-full font-medium transition-colors duration-200">
+              <a href="mailto:unravelledcorner@gmail.com?subject=Custom order" className="inline-flex items-center justify-center gap-2 border-2 border-monnama-cream/40 text-monnama-cream hover:border-monnama-cream hover:bg-monnama-cream/10 px-8 py-4 rounded-full font-medium transition-colors duration-200">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>

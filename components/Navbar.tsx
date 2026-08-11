@@ -10,12 +10,12 @@ type Locale = "es" | "en";
 const NAV_LINKS = {
   es: [
     { href: "/catalogo", label: "Catálogo" },
-    { href: "/sobre-monnama", label: "Sobre Monnama" },
+    { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
   ],
   en: [
     { href: "/en/catalogo", label: "Catalog" },
-    { href: "/en/sobre-monnama", label: "About" },
+    { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
   ],
 };
@@ -43,10 +43,10 @@ export default function Navbar({ locale = "es" }: { locale?: Locale }) {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href={homeHref} className="flex items-center hover:opacity-80 transition-opacity">
           <Image
-            src="/uploads/logo-monnama-removebg-preview.png"
-            alt="Monnama"
-            width={160}
-            height={48}
+            src="/uploads/unravelled-corner-logo-transparent.png"
+            alt="Unravelled Corner"
+            width={210}
+            height={56}
             style={{ objectFit: "contain" }}
             priority
           />

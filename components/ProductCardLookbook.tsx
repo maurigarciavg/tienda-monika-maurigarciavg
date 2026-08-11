@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Producto } from "@/data/productos";
+import { Producto, getNombre, getDescripcion } from "@/data/productos";
 
 type Locale = "es" | "en";
 
@@ -29,7 +29,7 @@ export default function ProductCardLookbook({
           {producto.imagen ? (
             <Image
               src={producto.imagen}
-              alt={producto.nombre}
+              alt={getNombre(producto, locale)}
               fill
               className="object-cover group-hover:scale-[1.04] transition-transform duration-700"
             />
@@ -54,10 +54,10 @@ export default function ProductCardLookbook({
             {producto.categoria}
           </p>
           <h3 className="font-display text-3xl md:text-4xl text-monnama-brown mb-5 group-hover:text-monnama-terra transition-colors duration-300 leading-tight">
-            {producto.nombre}
+            {getNombre(producto, locale)}
           </h3>
           <p className="text-monnama-brown-mid leading-relaxed mb-8 line-clamp-4">
-            {producto.descripcion}
+            {getDescripcion(producto, locale)}
           </p>
           <div className="flex items-center justify-between">
             <p className="text-3xl font-bold text-monnama-terra">

@@ -1,4 +1,4 @@
-import { productos } from "@/data/productos";
+import { productos, getNombre, getDescripcion } from "@/data/productos";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,9 +17,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const producto = productos.find((p) => p.id === id);
-  if (!producto) return { title: "Product — Monnama" };
-  const title = `${producto.nombre} — Monnama`;
-  const description = `${producto.descripcion} Price: ${producto.precio}€.`;
+  if (!producto) return { title: "Product — Unravelled Corner" };
+  const title = `${getNombre(producto, "en")} — Unravelled Corner`;
+  const description = `${getDescripcion(producto, "en")} Price: ${producto.precio}€.`;
   return {
     title,
     description,
@@ -41,8 +41,9 @@ export default async function ProductPageEn({
     .filter((p) => p.id !== producto.id && p.categoria === producto.categoria)
     .slice(0, 3);
 
-  const asunto = encodeURIComponent(`Enquiry about: ${producto.nombre}`);
-  const cuerpo = encodeURIComponent(`Hi Monika! I'm interested in "${producto.nombre}" (${producto.precio}€). Is it available?`);
+  const nombreEn = getNombre(producto, "en");
+  const asunto = encodeURIComponent(`Enquiry about: ${nombreEn}`);
+  const cuerpo = encodeURIComponent(`Hi Monika! I'm interested in "${nombreEn}" (${producto.precio}€). Is it available?`);
 
   return (
     <div className="min-h-screen py-16 px-6 max-w-5xl mx-auto">
@@ -51,13 +52,13 @@ export default async function ProductPageEn({
         <span>/</span>
         <Link href="/en/catalogo" className="hover:text-monnama-terra transition-colors">Catalog</Link>
         <span>/</span>
-        <span className="text-monnama-brown font-medium truncate max-w-[200px]">{producto.nombre}</span>
+        <span className="text-monnama-brown font-medium truncate max-w-[200px]">{nombreEn}</span>
       </nav>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
         <div className="aspect-square bg-monnama-surface rounded-2xl overflow-hidden relative flex items-center justify-center">
           {producto.imagen ? (
-            <Image src={producto.imagen} alt={producto.nombre} fill className="object-cover" />
+            <Image src={producto.imagen} alt={nombreEn} fill className="object-cover" />
           ) : (
             <span className="text-8xl">🧶</span>
           )}
@@ -67,10 +68,10 @@ export default async function ProductPageEn({
           <span className="inline-block bg-monnama-peach text-monnama-terra text-sm font-medium px-3 py-1 rounded-full mb-4 self-start">
             {producto.tecnica}
           </span>
-          <h1 className="font-display text-4xl text-monnama-brown mb-4">{producto.nombre}</h1>
-          <p className="text-monnama-brown-mid text-lg leading-relaxed mb-6">{producto.descripcion}</p>
+          <h1 className="font-display text-4xl text-monnama-brown mb-4">{nombreEn}</h1>
+          <p className="text-monnama-brown-mid text-lg leading-relaxed mb-6">{getDescripcion(producto, "en")}</p>
           <p className="text-3xl font-bold text-monnama-terra mb-2">{producto.precio}€</p>
-          <ShareButton nombre={producto.nombre} locale="en" />
+          <ShareButton nombre={nombreEn} locale="en" />
 
           {producto.disponible ? (
             <div className="space-y-3">
@@ -89,7 +90,7 @@ export default async function ProductPageEn({
                 Instagram
               </a>
               <a
-                href={`mailto:monnama.tienda@gmail.com?subject=${asunto}&body=${cuerpo}`}
+                href={`mailto:unravelledcorner@gmail.com?subject=${asunto}&body=${cuerpo}`}
                 className="flex items-center gap-3 w-full border-2 border-monnama-terra text-monnama-terra hover:bg-monnama-terra hover:text-white px-6 py-4 rounded-xl font-medium transition-colors duration-200"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

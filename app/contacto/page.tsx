@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contacto — Monnama",
-  description: "Contacta con Monnama por Instagram o email.",
+  title: "Contacto — Unravelled Corner",
+  description: "Contacta con Unravelled Corner por Instagram o email.",
 };
 
 export default function ContactoPage() {
@@ -51,7 +51,7 @@ export default function ContactoPage() {
         </a>
 
         <a
-          href="mailto:monnama.tienda@gmail.com"
+          href="mailto:unravelledcorner@gmail.com"
           className="flex items-center gap-4 p-6 bg-monnama-surface hover:bg-monnama-peach rounded-2xl transition-colors duration-200 group"
         >
           <div className="w-12 h-12 bg-monnama-terra rounded-xl flex items-center justify-center flex-shrink-0">
@@ -74,7 +74,7 @@ export default function ContactoPage() {
               Email
             </p>
             <p className="text-monnama-brown-mid text-sm">
-              monnama.tienda@gmail.com
+              unravelledcorner@gmail.com
             </p>
           </div>
           <svg

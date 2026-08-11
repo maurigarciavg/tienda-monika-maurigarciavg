@@ -35,7 +35,7 @@ export default function MobileContactBar({ locale = "es" }: { locale?: Locale })
           {igLabel}
         </a>
         <a
-          href="mailto:monnama.tienda@gmail.com"
+          href="mailto:unravelledcorner@gmail.com"
           className="flex-1 flex items-center justify-center gap-2 border-2 border-monnama-terra text-monnama-terra py-3 rounded-xl font-medium text-sm"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

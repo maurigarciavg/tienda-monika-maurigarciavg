@@ -1,7 +1,7 @@
-# Monnama — Guía del proyecto
+# Unravelled Corner — Guía del proyecto
 
 ## Qué es este proyecto
-Tienda web para Monika (marca: **Monnama**). Expone y vende piezas artesanales hechas a mano: crochet y knitting. Los clientes llegan principalmente desde Instagram y compran contactando por Instagram DM o email.
+Tienda web para Monika (marca: **Unravelled Corner**). Expone y vende piezas artesanales hechas a mano: crochet y knitting. Los clientes llegan principalmente desde Instagram y compran contactando por Instagram DM o email.
 
 ## Restricciones clave
 - **Coste cero**: hosting gratuito en Vercel. Solo se paga el dominio anual (~10€).
@@ -57,5 +57,5 @@ npm run start  # servidor de producción local
 El desarrollador (Mauricio) acaba de salir de un bootcamp. Conoce HTML, CSS, JS, React, Bootstrap, JWT, REST APIs. Este proyecto es su base de aprendizaje real post-bootcamp. Priorizar explicaciones claras cuando se realicen cambios y fomentar que él mismo toque el código con mentoría.
 
 ## Contacto de Monnama (actualizar si cambia)
-- Instagram: `@monnama` (placeholder — actualizar con el real)
-- Email: `monnama.tienda@gmail.com` (placeholder — actualizar con el real)
+- Instagram: `@unravelledcorner` (placeholder — actualizar con el real)
+- Email: `unravelledcorner@gmail.com` (placeholder — actualizar con el real)
