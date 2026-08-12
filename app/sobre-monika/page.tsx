@@ -56,6 +56,38 @@ export default function SobreMonicaPage() {
         </div>
       </div>
 
+      {/* YouTube */}
+      <div className="max-w-3xl mx-auto mb-20">
+        <h2 className="font-display text-3xl text-monnama-brown text-center mb-3">
+          Escúchame en YouTube
+        </h2>
+        <p className="text-monnama-brown-mid text-center mb-8">
+          Monika comparte su mundo del tejido en su canal — técnicas, inspiración y el día a día de crear a mano.
+        </p>
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg">
+          <iframe
+            src="https://www.youtube.com/embed/96c723AdVlY"
+            title="Unravelled Corner — Podcast"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
+        <div className="text-center mt-6">
+          <a
+            href="https://www.youtube.com/@Unravelledcorner-h6u"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-monnama-terra hover:text-monnama-terra-dark font-medium transition-colors"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Ver el canal →
+          </a>
+        </div>
+      </div>
+
       {/* Valores */}
       <div className="max-w-5xl mx-auto bg-monnama-peach rounded-3xl p-12">
         <h2 className="font-display text-3xl text-monnama-brown text-center mb-10">
