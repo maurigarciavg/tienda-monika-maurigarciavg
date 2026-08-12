@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Sobre Monnama — La historia de Monika",
+  title: "Sobre Monika — La artesana detrás de Unravelled Corner",
   description:
-    "Conoce a Monika, la artesana detrás de Monnama. Crochet y knitting hechos con amor.",
+    "Conoce a Monika, la artesana detrás de Unravelled Corner. Crochet y knitting hechos con amor.",
 };
 
-export default function SobreMonnamaPage() {
+export default function SobreMonicaPage() {
   return (
     <div className="min-h-screen py-20 px-6">
       {/* Encabezado */}
       <div className="max-w-3xl mx-auto text-center mb-20">
         <h1 className="font-display text-5xl md:text-6xl text-monnama-brown mb-6">
-          Sobre Monnama
+          Sobre Monika
         </h1>
         <p className="text-monnama-brown-mid text-xl leading-relaxed">
           La historia detrás de cada puntada.
@@ -27,7 +27,7 @@ export default function SobreMonnamaPage() {
               y cambia el src a "/uploads/monika-perfil.jpg" */}
           <Image
             src="/uploads/monika-perfil.jpg"
-            alt="Monika, artesana detrás de Monnama"
+            alt="Monika, artesana detrás de Unravelled Corner"
             fill
             className="object-cover"
           />
@@ -39,8 +39,8 @@ export default function SobreMonnamaPage() {
           <p className="text-monnama-brown-mid leading-relaxed mb-4">
             Soy de Eslovaquia, pero la vida me ha llevado por caminos bonitos:
             viví en Reino Unido, volví a mi país, y ahora he echado raíces en
-            Granada, rodeada de montañas y luz del sur. Aquí es donde Monnama
-            ha encontrado su hogar.
+            Granada, rodeada de montañas y luz del sur. Aquí es donde Unravelled Corner
+            encontró su hogar.
           </p>
           <p className="text-monnama-brown-mid leading-relaxed mb-4">
             Las manualidades han sido parte de mí desde siempre. El crochet y
@@ -59,7 +59,7 @@ export default function SobreMonnamaPage() {
       {/* Valores */}
       <div className="max-w-5xl mx-auto bg-monnama-peach rounded-3xl p-12">
         <h2 className="font-display text-3xl text-monnama-brown text-center mb-10">
-          Lo que hace especial a Monnama
+          Lo que hace especial a Unravelled Corner
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[

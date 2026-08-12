@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Producto } from "@/data/productos";
+import { Producto, getNombre } from "@/data/productos";
 
 type Locale = "es" | "en";
 
@@ -33,7 +33,7 @@ export default function ProductCard({
           {producto.imagen ? (
             <Image
               src={producto.imagen}
-              alt={producto.nombre}
+              alt={getNombre(producto, locale)}
               fill
               className={`object-cover transition-transform duration-500 ${
                 agotado ? "grayscale" : "group-hover:scale-105"
@@ -64,7 +64,7 @@ export default function ProductCard({
               agotado ? "" : "group-hover:text-monnama-terra"
             }`}
           >
-            {producto.nombre}
+            {getNombre(producto, locale)}
           </h3>
           <div className="flex items-center justify-between mt-1">
             <p className={`font-bold text-lg ${agotado ? "text-monnama-brown-mid" : "text-monnama-terra"}`}>

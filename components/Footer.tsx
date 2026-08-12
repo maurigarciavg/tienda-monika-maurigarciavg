@@ -6,12 +6,12 @@ type Locale = "es" | "en";
 const FOOTER_LINKS = {
   es: [
     { href: "/catalogo", label: "Catálogo" },
-    { href: "/sobre-monnama", label: "Sobre Monnama" },
+    { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
   ],
   en: [
     { href: "/en/catalogo", label: "Catalog" },
-    { href: "/en/sobre-monnama", label: "About" },
+    { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
   ],
 };
@@ -25,8 +25,8 @@ export default function Footer({ locale = "es" }: { locale?: Locale }) {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <Image
-            src="/uploads/logo-monnama-removebg-preview.png"
-            alt="Monnama"
+            src="/uploads/unravelled-corner-logo-transparent.png"
+            alt="Unravelled Corner"
             width={140}
             height={42}
             style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
@@ -47,7 +47,7 @@ export default function Footer({ locale = "es" }: { locale?: Locale }) {
             href="https://www.instagram.com/made_bymonnama"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram de Monnama"
+            aria-label="Instagram de Unravelled Corner"
             className="text-monnama-peach/60 hover:text-white transition-colors"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@ export default function Footer({ locale = "es" }: { locale?: Locale }) {
             </svg>
           </a>
           <p className="text-monnama-peach/50 text-xs">
-            © {new Date().getFullYear()} Monnama. {locale === "en" ? "Made with" : "Hecho con"} 🧶
+            © {new Date().getFullYear()} Unravelled Corner. {locale === "en" ? "Made with" : "Hecho con"} 🧶
           </p>
         </div>
       </div>

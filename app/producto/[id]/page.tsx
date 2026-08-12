@@ -19,10 +19,10 @@ export async function generateMetadata({
   const producto = productos.find((p) => p.id === id);
 
   if (!producto) {
-    return { title: "Producto — Monnama" };
+    return { title: "Producto — Unravelled Corner" };
   }
 
-  const title = `${producto.nombre} — Monnama`;
+  const title = `${producto.nombre} — Unravelled Corner`;
   const description = `${producto.descripcion} Precio: ${producto.precio}€.`;
 
   return {
@@ -125,7 +125,7 @@ export default async function ProductoPage({
                 Instagram
               </a>
               <a
-                href={`mailto:monnama.tienda@gmail.com?subject=${asunto}&body=${cuerpo}`}
+                href={`mailto:unravelledcorner@gmail.com?subject=${asunto}&body=${cuerpo}`}
                 className="flex items-center gap-3 w-full border-2 border-monnama-terra text-monnama-terra hover:bg-monnama-terra hover:text-white px-6 py-4 rounded-xl font-medium transition-colors duration-200"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

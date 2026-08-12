@@ -3,7 +3,7 @@ import Link from "next/link";
 import CatalogoClient from "@/components/CatalogoClient";
 
 export const metadata: Metadata = {
-  title: "Catálogo — Monnama",
+  title: "Catálogo — Unravelled Corner",
   description: "Todas las piezas de crochet y knitting hechas a mano por Monika.",
 };
 
