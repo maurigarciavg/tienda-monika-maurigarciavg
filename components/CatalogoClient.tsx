@@ -26,11 +26,15 @@ const TECHNIQUE_LABELS: Record<Locale, Record<FiltroTecnica, string>> = {
   en: { Todas: "All", Crochet: "Crochet", Knitting: "Knitting" },
 };
 
-const countPorCategoria = (c: FiltroCategoria) =>
-  c === "Todas" ? productos.length : productos.filter((p) => p.categoria === c).length;
+const countPorCategoria = (c: FiltroCategoria, tecnicaActiva: FiltroTecnica) => {
+  const base = tecnicaActiva === "Todas" ? productos : productos.filter((p) => p.tecnica === tecnicaActiva);
+  return c === "Todas" ? base.length : base.filter((p) => p.categoria === c).length;
+};
 
-const countPorTecnica = (t: FiltroTecnica) =>
-  t === "Todas" ? productos.length : productos.filter((p) => p.tecnica === t).length;
+const countPorTecnica = (t: FiltroTecnica, categoriaActiva: FiltroCategoria) => {
+  const base = categoriaActiva === "Todas" ? productos : productos.filter((p) => p.categoria === categoriaActiva);
+  return t === "Todas" ? base.length : base.filter((p) => p.tecnica === t).length;
+};
 
 const GridIcon = () => (
   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
@@ -97,7 +101,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
                     : "bg-transparent text-monnama-brown border-monnama-brown-mid hover:border-monnama-terra hover:text-monnama-terra"
                 }`}
               >
-                {catLabels[c]}{c !== "Todas" && ` (${countPorCategoria(c)})`}
+                {catLabels[c]}{c !== "Todas" && ` (${countPorCategoria(c, tecnica)})`}
               </button>
             ))}
           </div>
@@ -119,7 +123,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
                       : "bg-transparent text-monnama-brown-mid border-monnama-brown-mid/50 hover:border-monnama-sage hover:text-monnama-sage"
                   }`}
                 >
-                  {techLabels[t]}{t !== "Todas" && ` (${countPorTecnica(t)})`}
+                  {techLabels[t]}{t !== "Todas" && ` (${countPorTecnica(t, categoria)})`}
                 </button>
               ))}
             </div>
