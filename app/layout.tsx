@@ -7,8 +7,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import MobileContactBar from "@/components/MobileContactBar";
 import { headers } from "next/headers";
 
-type Locale = "es" | "en";
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -47,18 +45,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const headersList = await headers();
-  const locale = (headersList.get("x-locale") ?? "es") as Locale;
+  const locale = (headersList.get("x-locale") ?? "es") as "es" | "en";
 
   return (
     <html lang={locale}>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
-        <Navbar locale={locale} />
+        <Navbar />
         <main>{children}</main>
-        <Footer locale={locale} />
+        <Footer />
         <ScrollToTop />
-        <MobileContactBar locale={locale} />
+        <MobileContactBar />
       </body>
     </html>
   );

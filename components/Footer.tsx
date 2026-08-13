@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 type Locale = "es" | "en";
 
@@ -16,7 +19,9 @@ const FOOTER_LINKS = {
   ],
 };
 
-export default function Footer({ locale = "es" }: { locale?: Locale }) {
+export default function Footer() {
+  const pathname = usePathname();
+  const locale: Locale = pathname.startsWith("/en") ? "en" : "es";
   const links = FOOTER_LINKS[locale];
   const tagline = locale === "en" ? "Handmade knitwear & crochet" : "Tejidos y crochet hechos a mano";
 
