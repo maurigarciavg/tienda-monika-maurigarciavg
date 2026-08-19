@@ -57,6 +57,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
   const [tecnica, setTecnica] = useState<FiltroTecnica>("Todas");
   const [categoria, setCategoria] = useState<FiltroCategoria>("Todas");
   const [vista, setVista] = useState<Vista>("grid");
+  const [soloDisponibles, setSoloDisponibles] = useState(false);
 
   const catLabels = CATEGORY_LABELS[locale];
   const techLabels = TECHNIQUE_LABELS[locale];
@@ -70,7 +71,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
 
   const disponibles = productos.filter((p) => filtrar(p) && p.disponible);
   const agotados = productos.filter((p) => filtrar(p) && !p.disponible);
-  const productosFiltrados = [...disponibles, ...agotados];
+  const productosFiltrados = soloDisponibles ? disponibles : [...disponibles, ...agotados];
 
   const pieceLabel = locale === "en"
     ? productosFiltrados.length === 1 ? "piece" : "pieces"
@@ -129,6 +130,19 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
             </div>
           </div>
 
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSoloDisponibles(!soloDisponibles)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-colors duration-200 ${
+                soloDisponibles
+                  ? "bg-monnama-brown text-white border-monnama-brown"
+                  : "border-monnama-brown-mid/40 text-monnama-brown-mid hover:border-monnama-brown hover:text-monnama-brown"
+              }`}
+            >
+              <span className={`w-2 h-2 rounded-full ${soloDisponibles ? "bg-monnama-sage" : "bg-monnama-brown-mid/40"}`} />
+              {locale === "en" ? "Available only" : "Solo disponibles"}
+            </button>
+
           <div className="flex items-center gap-1 bg-monnama-surface rounded-lg p-1">
             <button
               onClick={() => setVista("grid")}
@@ -149,6 +163,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
               <LookbookIcon />
             </button>
           </div>
+          </div>
         </div>
       </div>
 
@@ -165,7 +180,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
           <h3 className="font-display text-2xl text-monnama-brown">{emptyTitle}</h3>
           <p className="text-monnama-brown-mid max-w-xs">{emptyText}</p>
           <button
-            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); }}
+            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); setSoloDisponibles(false); }}
             className="mt-2 px-6 py-2 rounded-full bg-monnama-terra text-white text-sm font-medium hover:bg-monnama-terra-dark transition-colors duration-200"
           >
             {emptyBtn}
