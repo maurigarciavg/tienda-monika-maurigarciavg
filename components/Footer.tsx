@@ -26,7 +26,7 @@ export default function Footer() {
   const tagline = locale === "en" ? "Handmade knitwear & crochet" : "Tejidos y crochet hechos a mano";
 
   return (
-    <footer className="bg-monnama-brown text-monnama-peach py-12 px-6">
+    <footer className="relative grain bg-monnama-brown text-monnama-peach py-12 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <Image
