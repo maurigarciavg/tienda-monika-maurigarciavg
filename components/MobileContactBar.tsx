@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 type Locale = "es" | "en";
 
-export default function MobileContactBar({ locale = "es" }: { locale?: Locale }) {
+export default function MobileContactBar() {
+  const pathname = usePathname();
+  const locale: Locale = pathname.startsWith("/en") ? "en" : "es";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

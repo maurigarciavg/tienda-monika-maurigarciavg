@@ -1,37 +1,33 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { productos } from "@/data/productos";
 
 const BASE_URL = "https://tienda-monika-maurigarciavg.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paginasEstaticas: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/catalogo`,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/sobre-monnama`,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/contacto`,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-  ];
-
-  const paginasProductos: MetadataRoute.Sitemap = productos.map((producto) => ({
-    url: `${BASE_URL}/producto/${producto.id}`,
-    changeFrequency: "weekly",
-    priority: 0.7,
+  const productosEs = productos.map((p) => ({
+    url: `${BASE_URL}/producto/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
-  return [...paginasEstaticas, ...paginasProductos];
+  const productosEn = productos.map((p) => ({
+    url: `${BASE_URL}/en/producto/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [
+    { url: `${BASE_URL}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 1.0 },
+    { url: `${BASE_URL}/en`, lastModified: new Date(), changeFrequency: "monthly", priority: 1.0 },
+    { url: `${BASE_URL}/catalogo`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/en/catalogo`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/sobre-monika`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/en/sobre-monika`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/en/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    ...productosEs,
+    ...productosEn,
+  ];
 }

@@ -67,7 +67,7 @@ export default function Home() {
       <Marquee />
 
       {/* Cifras */}
-      <section className="py-16 px-6 bg-monnama-brown">
+      <section className="relative grain py-16 px-6 bg-monnama-brown">
         <ScrollReveal>
           <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {[
@@ -186,7 +186,7 @@ export default function Home() {
 
       {/* Teaser sobre Monika */}
       <ScrollReveal>
-        <section className="bg-monnama-peach py-20 px-6">
+        <section className="relative grain bg-monnama-peach py-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-4xl text-monnama-brown mb-6">
               El alma detrás de Unravelled Corner
@@ -272,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* Encargo personalizado */}
-      <section className="bg-monnama-brown py-20 px-6">
+      <section className="relative grain bg-monnama-brown py-20 px-6">
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-4xl mb-6 block">✉️</span>

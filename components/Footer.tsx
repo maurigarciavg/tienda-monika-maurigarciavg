@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 type Locale = "es" | "en";
 
@@ -16,12 +19,14 @@ const FOOTER_LINKS = {
   ],
 };
 
-export default function Footer({ locale = "es" }: { locale?: Locale }) {
+export default function Footer() {
+  const pathname = usePathname();
+  const locale: Locale = pathname.startsWith("/en") ? "en" : "es";
   const links = FOOTER_LINKS[locale];
   const tagline = locale === "en" ? "Handmade knitwear & crochet" : "Tejidos y crochet hechos a mano";
 
   return (
-    <footer className="bg-monnama-brown text-monnama-peach py-12 px-6">
+    <footer className="relative grain bg-monnama-brown text-monnama-peach py-12 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <Image

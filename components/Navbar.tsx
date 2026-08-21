@@ -9,23 +9,33 @@ type Locale = "es" | "en";
 
 const NAV_LINKS = {
   es: [
+    { href: "/", label: "Inicio" },
     { href: "/catalogo", label: "Catálogo" },
     { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
   ],
   en: [
+    { href: "/en", label: "Home" },
     { href: "/en/catalogo", label: "Catalog" },
     { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
   ],
 };
 
-export default function Navbar({ locale = "es" }: { locale?: Locale }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  // Always derived from the current URL — never stale
+  const locale: Locale = pathname.startsWith("/en") ? "en" : "es";
   const links = NAV_LINKS[locale];
   const homeHref = locale === "en" ? "/en" : "/";
+
+  const isActive = (href: string) => {
+    if (href === "/" || href === "/en") return pathname === href;
+    return pathname.startsWith(href);
+  };
 
   const switchLocale = (target: Locale) => {
     document.cookie = `monnama-locale=${target};path=/;max-age=${60 * 60 * 24 * 30}`;
@@ -59,7 +69,7 @@ export default function Navbar({ locale = "es" }: { locale?: Locale }) {
               <Link
                 href={href}
                 className={`text-sm font-medium transition-colors ${
-                  pathname === href
+                  isActive(href)
                     ? "text-monnama-terra"
                     : "text-monnama-brown-mid hover:text-monnama-brown"
                 }`}
@@ -110,7 +120,9 @@ export default function Navbar({ locale = "es" }: { locale?: Locale }) {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-monnama-brown-mid hover:text-monnama-terra transition-colors"
+              className={`block py-3 transition-colors ${
+                isActive(href) ? "text-monnama-terra font-medium" : "text-monnama-brown-mid hover:text-monnama-terra"
+              }`}
             >
               {label}
             </Link>
