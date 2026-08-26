@@ -45,7 +45,7 @@ export default function HomeEn() {
       <Marquee locale="en" />
 
       {/* Stats */}
-      <section className="py-16 px-6 bg-monnama-brown">
+      <section className="relative grain py-16 px-6 bg-monnama-brown">
         <ScrollReveal>
           <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             {[
@@ -123,7 +123,7 @@ export default function HomeEn() {
 
       {/* About teaser */}
       <ScrollReveal>
-        <section className="bg-monnama-peach py-20 px-6">
+        <section className="relative grain bg-monnama-peach py-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-4xl text-monnama-brown mb-6">The soul behind Unravelled Corner</h2>
             <p className="text-monnama-brown-mid text-lg leading-relaxed max-w-2xl mx-auto mb-8">
@@ -173,7 +173,7 @@ export default function HomeEn() {
       </section>
 
       {/* Custom order */}
-      <section className="bg-monnama-brown py-20 px-6">
+      <section className="relative grain bg-monnama-brown py-20 px-6">
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-4xl mb-6 block">✉️</span>
