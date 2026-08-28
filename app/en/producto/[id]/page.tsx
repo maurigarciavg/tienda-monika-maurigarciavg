@@ -45,7 +45,32 @@ export default async function ProductPageEn({
   const asunto = encodeURIComponent(`Enquiry about: ${nombreEn}`);
   const cuerpo = encodeURIComponent(`Hi Monika! I'm interested in "${nombreEn}" (${producto.precio}€). Is it available?`);
 
+  const baseUrl = "https://tienda-monika-maurigarciavg.vercel.app";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: nombreEn,
+    description: getDescripcion(producto, "en"),
+    image: producto.imagen ? [producto.imagen] : undefined,
+    brand: { "@type": "Brand", name: "Unravelled Corner" },
+    offers: {
+      "@type": "Offer",
+      url: `${baseUrl}/en/producto/${producto.id}`,
+      priceCurrency: "EUR",
+      price: producto.precio,
+      availability: producto.disponible
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+      seller: { "@type": "Person", name: "Monika" },
+    },
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div className="min-h-screen py-16 px-6 max-w-5xl mx-auto">
       <nav className="flex items-center gap-2 text-sm text-monnama-brown-mid mb-10">
         <Link href="/en" className="hover:text-monnama-terra transition-colors">Home</Link>
@@ -124,5 +149,6 @@ export default async function ProductPageEn({
         </section>
       )}
     </div>
+    </>
   );
 }
