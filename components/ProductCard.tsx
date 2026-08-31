@@ -35,16 +35,16 @@ export default function ProductCard({
               src={producto.imagen}
               alt={getNombre(producto, locale)}
               fill
-              className={`object-cover transition-transform duration-500 ${
-                agotado ? "grayscale" : "group-hover:scale-105"
+              className={`object-cover transition-transform duration-700 ease-out ${
+                agotado ? "grayscale" : "group-hover:scale-110"
               }`}
             />
           ) : (
             <span className="text-6xl">🧶</span>
           )}
           {!agotado && (
-            <div className="absolute inset-0 bg-monnama-brown/0 group-hover:bg-monnama-brown/30 transition-colors duration-300 flex items-center justify-center">
-              <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-monnama-brown/80 via-monnama-brown/20 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-end justify-center pb-5">
+              <span className="text-white text-sm font-medium tracking-wide">
                 {viewLabel}
               </span>
             </div>
