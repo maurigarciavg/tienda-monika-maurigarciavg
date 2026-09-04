@@ -11,11 +11,13 @@ const FOOTER_LINKS = {
     { href: "/catalogo", label: "Catálogo" },
     { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
+    { href: "/faq", label: "FAQ" },
   ],
   en: [
     { href: "/en/catalogo", label: "Catalog" },
     { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
+    { href: "/en/faq", label: "FAQ" },
   ],
 };
 
