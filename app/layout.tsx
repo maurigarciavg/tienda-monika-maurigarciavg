@@ -6,7 +6,8 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import MobileContactBar from "@/components/MobileContactBar";
 import { headers } from "next/headers";
-import { Analytics } from "@vercel/analytics/next";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,7 +59,8 @@ export default async function RootLayout({
         <Footer />
         <ScrollToTop />
         <MobileContactBar />
-        <Analytics />
+        <CookieBanner />
+        <AnalyticsProvider />
       </body>
     </html>
   );
