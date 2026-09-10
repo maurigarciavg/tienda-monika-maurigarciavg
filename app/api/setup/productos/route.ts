@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   const body = (await req.json()) as Omit<Producto, "id">;
   const productos = await leerProductos();
 
-  let baseId = slugify(`${body.nombre}-${body.tecnica}`);
+  const baseId = slugify(`${body.nombre}-${body.tecnica}`);
   let id = baseId;
   let n = 2;
   while (productos.some((p) => p.id === id)) {
