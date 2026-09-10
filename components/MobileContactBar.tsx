@@ -27,7 +27,7 @@ export default function MobileContactBar() {
     >
       <div className="bg-white border-t border-monnama-peach px-4 py-3 flex gap-3">
         <a
-          href="https://www.instagram.com/made_bymonnama"
+          href="https://www.instagram.com/unravelledcorner"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 bg-monnama-terra text-white py-3 rounded-xl font-medium text-sm"

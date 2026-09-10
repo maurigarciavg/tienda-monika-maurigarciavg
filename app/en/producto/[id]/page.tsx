@@ -104,7 +104,7 @@ export default async function ProductPageEn({
                 Interested? Reach me on:
               </p>
               <a
-                href="https://www.instagram.com/made_bymonnama"
+                href="https://www.instagram.com/unravelledcorner"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 w-full bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-4 rounded-xl font-medium transition-colors duration-200"
@@ -130,7 +130,7 @@ export default async function ProductPageEn({
               <p className="text-monnama-brown-mid text-sm mb-4">
                 This piece isn&apos;t available right now, but I can make it to order.
               </p>
-              <a href="https://www.instagram.com/made_bymonnama" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-monnama-terra hover:text-monnama-terra-dark font-medium transition-colors">
+              <a href="https://www.instagram.com/unravelledcorner" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-monnama-terra hover:text-monnama-terra-dark font-medium transition-colors">
                 Message me on Instagram →
               </a>
             </div>

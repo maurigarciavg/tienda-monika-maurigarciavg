@@ -51,7 +51,7 @@ export default function Footer() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://www.instagram.com/made_bymonnama"
+            href="https://www.instagram.com/unravelledcorner"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram de Unravelled Corner"
