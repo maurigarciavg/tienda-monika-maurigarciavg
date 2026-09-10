@@ -61,7 +61,6 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
 
   const catLabels = CATEGORY_LABELS[locale];
   const techLabels = TECHNIQUE_LABELS[locale];
-  const allLabel = locale === "en" ? "All" : "Todas";
 
   const filtrar = (p: (typeof productos)[0]) => {
     const matchTecnica = tecnica === "Todas" || p.tecnica === tecnica;

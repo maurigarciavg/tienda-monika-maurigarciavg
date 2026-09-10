@@ -37,8 +37,17 @@ export default function SetupClient({ productosIniciales }: { productosIniciales
 
   const abrirParaEditar = (p: Producto) => {
     setEditandoId(p.id);
-    const { id, ...resto } = p;
-    setForm(resto);
+    setForm({
+      nombre: p.nombre,
+      nombreEn: p.nombreEn,
+      precio: p.precio,
+      tecnica: p.tecnica,
+      categoria: p.categoria,
+      descripcion: p.descripcion,
+      descripcionEn: p.descripcionEn,
+      imagen: p.imagen,
+      disponible: p.disponible,
+    });
     setError(null);
     setFormAbierto(true);
   };
