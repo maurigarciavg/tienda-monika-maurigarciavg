@@ -19,7 +19,7 @@ export default function ContactoPage() {
 
       <div className="space-y-4">
         <a
-          href="https://www.instagram.com/made_bymonnama"
+          href="https://www.instagram.com/unravelledcorner"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-4 p-6 bg-monnama-surface hover:bg-monnama-peach rounded-2xl transition-colors duration-200 group"
@@ -33,7 +33,7 @@ export default function ContactoPage() {
             <p className="font-medium text-monnama-brown group-hover:text-monnama-terra transition-colors">
               Instagram
             </p>
-            <p className="text-monnama-brown-mid text-sm">@made_bymonnama</p>
+            <p className="text-monnama-brown-mid text-sm">@unravelledcorner</p>
           </div>
           <svg className="w-5 h-5 text-monnama-brown-mid ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -3,6 +3,7 @@ import { productos } from "@/data/productos";
 import ProductCard from "@/components/ProductCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import Marquee from "@/components/Marquee";
+import InstagramFeed from "@/components/InstagramFeed";
 
 const destacados = productos.filter((p) => p.disponible).slice(0, 3);
 
@@ -172,7 +173,7 @@ export default function Home() {
           <ScrollReveal delay={300}>
             <div className="text-center mt-14">
               <a
-                href="https://www.instagram.com/made_bymonnama"
+                href="https://www.instagram.com/unravelledcorner"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-monnama-terra hover:bg-monnama-terra-dark text-white px-8 py-4 rounded-full font-medium transition-colors duration-200"
@@ -271,6 +272,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Instagram */}
+      <section className="py-20 px-6 bg-monnama-surface">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <h2 className="font-display text-4xl text-monnama-brown mb-3">
+                Síguenos en Instagram
+              </h2>
+              <p className="text-monnama-brown-mid">
+                El día a día del taller, piezas nuevas y detrás de cámaras.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <InstagramFeed />
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Encargo personalizado */}
       <section className="relative grain bg-monnama-brown py-20 px-6">
         <ScrollReveal>
@@ -285,7 +305,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://www.instagram.com/made_bymonnama"
+                href="https://www.instagram.com/unravelledcorner"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-monnama-terra hover:bg-monnama-terra-dark text-white px-8 py-4 rounded-full font-medium transition-colors duration-200"

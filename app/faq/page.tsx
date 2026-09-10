@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: "¿Cómo hago un pedido?",
-    a: "Escríbeme por Instagram (@made_bymonnama) o por email a unravelledcorner@gmail.com indicando la pieza que te interesa. Te confirmaré disponibilidad y te cuento todos los detalles antes de proceder.",
+    a: "Escríbeme por Instagram (@unravelledcorner) o por email a unravelledcorner@gmail.com indicando la pieza que te interesa. Te confirmaré disponibilidad y te cuento todos los detalles antes de proceder.",
   },
   {
     q: "¿Cuánto tarda en llegar?",
@@ -75,7 +75,7 @@ export default function FaqPage() {
         <p className="text-monnama-brown-mid mb-6">Escríbeme directamente y te respondo lo antes posible.</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
-            href="https://www.instagram.com/made_bymonnama"
+            href="https://www.instagram.com/unravelledcorner"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-3 rounded-full font-medium transition-colors duration-200"
