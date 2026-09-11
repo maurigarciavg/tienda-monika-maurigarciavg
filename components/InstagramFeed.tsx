@@ -1,6 +1,9 @@
+import Image from "next/image";
+import instagramData from "@/data/instagram.json";
+
 type Locale = "es" | "en";
 
-const instagramPosts = [
+const PLACEHOLDERS = [
   { emoji: "🧶", color: "from-monnama-terra to-monnama-peach" },
   { emoji: "🎨", color: "from-monnama-peach to-monnama-sage" },
   { emoji: "✨", color: "from-monnama-sage to-monnama-terra" },
@@ -9,11 +12,30 @@ const instagramPosts = [
 
 export default function InstagramFeed({ locale = "es" }: { locale?: Locale }) {
   const viewMoreLabel = locale === "en" ? "See more on Instagram" : "Ver más en Instagram";
+  const fotos = instagramData as { id: string; imagen: string }[];
+  const huecos = Math.max(0, 4 - fotos.length);
 
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {instagramPosts.map((post, i) => (
+        {fotos.map((foto) => (
+          <a
+            key={foto.id}
+            href="https://www.instagram.com/unravelledcorner/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 relative"
+          >
+            <Image
+              src={foto.imagen}
+              alt="Unravelled Corner en Instagram"
+              fill
+              unoptimized
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+          </a>
+        ))}
+        {PLACEHOLDERS.slice(0, huecos).map((post, i) => (
           <a
             key={i}
             href="https://www.instagram.com/unravelledcorner/"

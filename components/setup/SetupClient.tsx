@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { Producto, Categoria, Tecnica } from "@/data/productos";
+import type { FotoInstagram } from "@/lib/setup-instagram";
 
 const CATEGORIAS: Categoria[] = ["Gorros", "Bufandas", "Guantes", "Bolsos", "Amigurumis", "Bebé", "Hogar", "Ropa"];
 const TECNICAS: Tecnica[] = ["Crochet", "Knitting"];
@@ -19,7 +20,14 @@ const PRODUCTO_VACIO: Omit<Producto, "id"> = {
   disponible: true,
 };
 
-export default function SetupClient({ productosIniciales }: { productosIniciales: Producto[] }) {
+export default function SetupClient({
+  productosIniciales,
+  fotosInstagramIniciales,
+}: {
+  productosIniciales: Producto[];
+  fotosInstagramIniciales: FotoInstagram[];
+}) {
+  const [pestana, setPestana] = useState<"productos" | "instagram">("productos");
   const [productos, setProductos] = useState<Producto[]>(productosIniciales);
   const [formAbierto, setFormAbierto] = useState(false);
   const [editandoId, setEditandoId] = useState<string | null>(null);
@@ -27,6 +35,10 @@ export default function SetupClient({ productosIniciales }: { productosIniciales
   const [subiendoImagen, setSubiendoImagen] = useState(false);
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [fotosInstagram, setFotosInstagram] = useState<FotoInstagram[]>(fotosInstagramIniciales);
+  const [subiendoFotoInstagram, setSubiendoFotoInstagram] = useState(false);
+  const [errorInstagram, setErrorInstagram] = useState<string | null>(null);
 
   const abrirParaCrear = () => {
     setEditandoId(null);
@@ -123,24 +135,121 @@ export default function SetupClient({ productosIniciales }: { productosIniciales
     }
   };
 
+  const subirFotoInstagram = async (file: File) => {
+    setSubiendoFotoInstagram(true);
+    setErrorInstagram(null);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const uploadRes = await fetch("/api/setup/upload", { method: "POST", body });
+      if (!uploadRes.ok) throw new Error((await uploadRes.json()).error || "Error al subir la imagen");
+      const { url } = await uploadRes.json();
+
+      const res = await fetch("/api/setup/instagram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imagen: url }),
+      });
+      if (!res.ok) throw new Error((await res.json()).error || "Error al guardar la foto");
+      const nueva = await res.json();
+      setFotosInstagram((prev) => [...prev, nueva]);
+    } catch (e) {
+      setErrorInstagram(e instanceof Error ? e.message : "Error al subir la foto");
+    } finally {
+      setSubiendoFotoInstagram(false);
+    }
+  };
+
+  const eliminarFotoInstagram = async (id: string) => {
+    if (!confirm("¿Eliminar esta foto del feed de Instagram?")) return;
+    const res = await fetch(`/api/setup/instagram/${id}`, { method: "DELETE" });
+    if (res.ok) setFotosInstagram((prev) => prev.filter((f) => f.id !== id));
+  };
+
   return (
     <div className="min-h-screen bg-monnama-cream py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
           <div>
-            <h1 className="font-display text-4xl text-monnama-brown mb-1">Gestión de productos</h1>
-            <p className="text-monnama-brown-mid text-sm">
-              Panel privado, solo disponible en desarrollo. {productos.length} productos.
-            </p>
+            <h1 className="font-display text-4xl text-monnama-brown mb-1">Panel de gestión</h1>
+            <p className="text-monnama-brown-mid text-sm">Panel privado, solo disponible en desarrollo.</p>
           </div>
+          {pestana === "productos" && (
+            <button
+              onClick={abrirParaCrear}
+              className="bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-3 rounded-full font-medium transition-colors"
+            >
+              + Añadir producto
+            </button>
+          )}
+        </div>
+
+        <div className="flex gap-2 mb-8 border-b border-monnama-peach">
           <button
-            onClick={abrirParaCrear}
-            className="bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-3 rounded-full font-medium transition-colors"
+            onClick={() => setPestana("productos")}
+            className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+              pestana === "productos"
+                ? "border-monnama-terra text-monnama-terra"
+                : "border-transparent text-monnama-brown-mid hover:text-monnama-brown"
+            }`}
           >
-            + Añadir producto
+            Productos ({productos.length})
+          </button>
+          <button
+            onClick={() => setPestana("instagram")}
+            className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+              pestana === "instagram"
+                ? "border-monnama-terra text-monnama-terra"
+                : "border-transparent text-monnama-brown-mid hover:text-monnama-brown"
+            }`}
+          >
+            Instagram ({fotosInstagram.length})
           </button>
         </div>
 
+        {pestana === "instagram" && (
+          <div>
+            <p className="text-monnama-brown-mid text-sm mb-6">
+              Estas fotos aparecen en la sección &ldquo;Síguenos en Instagram&rdquo; de la home. Los huecos vacíos (hasta 4) se rellenan con un diseño de relleno.
+            </p>
+
+            {errorInstagram && (
+              <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg px-4 py-3 mb-4">
+                {errorInstagram}
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              {fotosInstagram.map((foto) => (
+                <div key={foto.id} className="relative aspect-square rounded-xl overflow-hidden bg-monnama-surface group">
+                  <Image src={foto.imagen} alt="" fill className="object-cover" unoptimized />
+                  <button
+                    onClick={() => eliminarFotoInstagram(foto.id)}
+                    className="absolute top-2 right-2 bg-white/90 text-red-500 text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <label className="inline-block bg-monnama-terra hover:bg-monnama-terra-dark text-white px-6 py-3 rounded-full font-medium transition-colors cursor-pointer">
+              {subiendoFotoInstagram ? "Subiendo..." : "+ Subir foto"}
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                disabled={subiendoFotoInstagram}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) subirFotoInstagram(file);
+                }}
+              />
+            </label>
+          </div>
+        )}
+
+        {pestana === "productos" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {productos.map((p) => (
             <div key={p.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-monnama-peach">
@@ -185,6 +294,7 @@ export default function SetupClient({ productosIniciales }: { productosIniciales
             </div>
           ))}
         </div>
+        )}
       </div>
 
       {formAbierto && (
