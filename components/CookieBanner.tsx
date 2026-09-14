@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function CookieBanner() {
@@ -33,11 +34,20 @@ export default function CookieBanner() {
 
   const acceptLabel = locale === "en" ? "Accept" : "Aceptar";
   const rejectLabel = locale === "en" ? "Reject" : "Rechazar";
+  const moreInfoLabel = locale === "en" ? "More info" : "Más información";
 
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 px-4 pb-4 pointer-events-none">
       <div className="max-w-2xl mx-auto bg-monnama-brown text-monnama-peach rounded-2xl shadow-2xl px-6 py-4 flex flex-col sm:flex-row items-center gap-4 pointer-events-auto">
-        <p className="text-sm leading-relaxed flex-1">{text}</p>
+        <p className="text-sm leading-relaxed flex-1">
+          {text}{" "}
+          <Link
+            href={locale === "en" ? "/en/privacidad" : "/privacidad"}
+            className="underline underline-offset-2 hover:text-white"
+          >
+            {moreInfoLabel}
+          </Link>
+        </p>
         <div className="flex gap-3 shrink-0">
           <button
             onClick={reject}
