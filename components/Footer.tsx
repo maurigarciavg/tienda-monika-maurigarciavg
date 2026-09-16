@@ -11,12 +11,14 @@ const FOOTER_LINKS = {
     { href: "/catalogo", label: "Catálogo" },
     { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
+    { href: "/cuidados", label: "Cuidados" },
     { href: "/faq", label: "FAQ" },
   ],
   en: [
     { href: "/en/catalogo", label: "Catalog" },
     { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
+    { href: "/en/cuidados", label: "Care" },
     { href: "/en/faq", label: "FAQ" },
   ],
 };
@@ -41,7 +43,7 @@ export default function Footer() {
           <p className="text-monnama-peach/70 text-sm mt-1">{tagline}</p>
         </div>
 
-        <nav className="flex gap-6 text-sm">
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
           {links.map(({ href, label }) => (
             <Link key={href} href={href} className="hover:text-white transition-colors">
               {label}
