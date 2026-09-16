@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/en/contacto`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/en/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/cuidados`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/en/cuidados`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/privacidad`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE_URL}/en/privacidad`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     ...productosEs,
     ...productosEn,
   ];

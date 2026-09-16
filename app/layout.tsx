@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import MobileContactBar from "@/components/MobileContactBar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { headers } from "next/headers";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
 import CookieBanner from "@/components/CookieBanner";
@@ -59,6 +60,7 @@ export default async function RootLayout({
         <Footer />
         <ScrollToTop />
         <MobileContactBar />
+        <WhatsAppButton />
         <CookieBanner />
         <AnalyticsProvider />
       </body>

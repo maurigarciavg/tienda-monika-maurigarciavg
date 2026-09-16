@@ -11,12 +11,14 @@ const FOOTER_LINKS = {
     { href: "/catalogo", label: "Catálogo" },
     { href: "/sobre-monika", label: "Sobre Monika" },
     { href: "/contacto", label: "Contacto" },
+    { href: "/cuidados", label: "Cuidados" },
     { href: "/faq", label: "FAQ" },
   ],
   en: [
     { href: "/en/catalogo", label: "Catalog" },
     { href: "/en/sobre-monika", label: "About" },
     { href: "/en/contacto", label: "Contact" },
+    { href: "/en/cuidados", label: "Care" },
     { href: "/en/faq", label: "FAQ" },
   ],
 };
@@ -41,7 +43,7 @@ export default function Footer() {
           <p className="text-monnama-peach/70 text-sm mt-1">{tagline}</p>
         </div>
 
-        <nav className="flex gap-6 text-sm">
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
           {links.map(({ href, label }) => (
             <Link key={href} href={href} className="hover:text-white transition-colors">
               {label}
@@ -72,10 +74,19 @@ export default function Footer() {
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
-          <p className="text-monnama-peach/50 text-xs">
-            © {new Date().getFullYear()} Unravelled Corner. {locale === "en" ? "Made with" : "Hecho con"} 🧶
-          </p>
         </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-monnama-peach/20 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p className="text-monnama-peach/50 text-xs">
+          © {new Date().getFullYear()} Unravelled Corner. {locale === "en" ? "Made with" : "Hecho con"} 🧶
+        </p>
+        <Link
+          href={locale === "en" ? "/en/privacidad" : "/privacidad"}
+          className="text-monnama-peach/50 hover:text-white text-xs transition-colors"
+        >
+          {locale === "en" ? "Privacy policy" : "Política de privacidad"}
+        </Link>
       </div>
     </footer>
   );
