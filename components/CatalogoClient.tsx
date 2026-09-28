@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { productos, Tecnica, Categoria } from "@/data/productos";
+import { productos, Tecnica, Categoria, getNombre } from "@/data/productos";
 import ProductCard from "@/components/ProductCard";
 import ProductCardLookbook from "@/components/ProductCardLookbook";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -25,6 +25,9 @@ const TECHNIQUE_LABELS: Record<Locale, Record<FiltroTecnica, string>> = {
   es: { Todas: "Todas", Crochet: "Crochet", Knitting: "Knitting" },
   en: { Todas: "All", Crochet: "Crochet", Knitting: "Knitting" },
 };
+
+const DIACRITICS_REGEX = /[̀-ͯ]/g;
+const normalizar = (s: string) => s.toLowerCase().normalize("NFD").replace(DIACRITICS_REGEX, "");
 
 const countPorCategoria = (c: FiltroCategoria, tecnicaActiva: FiltroTecnica) => {
   const base = tecnicaActiva === "Todas" ? productos : productos.filter((p) => p.tecnica === tecnicaActiva);
@@ -58,6 +61,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
   const [categoria, setCategoria] = useState<FiltroCategoria>("Todas");
   const [vista, setVista] = useState<Vista>("grid");
   const [soloDisponibles, setSoloDisponibles] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
 
   const catLabels = CATEGORY_LABELS[locale];
   const techLabels = TECHNIQUE_LABELS[locale];
@@ -65,7 +69,9 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
   const filtrar = (p: (typeof productos)[0]) => {
     const matchTecnica = tecnica === "Todas" || p.tecnica === tecnica;
     const matchCategoria = categoria === "Todas" || p.categoria === categoria;
-    return matchTecnica && matchCategoria;
+    const matchBusqueda =
+      busqueda.trim() === "" || normalizar(getNombre(p, locale)).includes(normalizar(busqueda.trim()));
+    return matchTecnica && matchCategoria && matchBusqueda;
   };
 
   const disponibles = productos.filter((p) => filtrar(p) && p.disponible);
@@ -81,9 +87,40 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
   const emptyBtn = locale === "en" ? "View all pieces" : "Ver todas las piezas";
   const categoryLabel = locale === "en" ? "Category" : "Categoría";
   const techniqueLabel = locale === "en" ? "Technique" : "Técnica";
+  const searchPlaceholder = locale === "en" ? "Search pieces by name…" : "Busca piezas por nombre…";
 
   return (
     <>
+      {/* Buscador */}
+      <div className="relative mb-6">
+        <svg
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-monnama-brown-mid/60"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+        </svg>
+        <input
+          type="text"
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          placeholder={searchPlaceholder}
+          className="w-full bg-monnama-surface rounded-full pl-11 pr-11 py-3 text-sm text-monnama-brown placeholder:text-monnama-brown-mid/60 border border-transparent focus:border-monnama-terra focus:outline-none transition-colors"
+        />
+        {busqueda && (
+          <button
+            onClick={() => setBusqueda("")}
+            aria-label={locale === "en" ? "Clear search" : "Borrar búsqueda"}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-monnama-brown-mid/60 hover:text-monnama-brown transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
+      </div>
+
       {/* Filtros + vista */}
       <div className="flex flex-col gap-4 mb-10">
         <div>
@@ -169,7 +206,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
       {/* Contador */}
       <p className="text-monnama-brown-mid text-sm mb-6">
         {productosFiltrados.length} {pieceLabel}
-        {(categoria !== "Todas" || tecnica !== "Todas") && ` ${foundLabel}`}
+        {(categoria !== "Todas" || tecnica !== "Todas" || busqueda.trim() !== "") && ` ${foundLabel}`}
       </p>
 
       {/* Productos */}
@@ -179,7 +216,7 @@ export default function CatalogoClient({ locale = "es" }: { locale?: Locale }) {
           <h3 className="font-display text-2xl text-monnama-brown">{emptyTitle}</h3>
           <p className="text-monnama-brown-mid max-w-xs">{emptyText}</p>
           <button
-            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); setSoloDisponibles(false); }}
+            onClick={() => { setCategoria("Todas"); setTecnica("Todas"); setSoloDisponibles(false); setBusqueda(""); }}
             className="mt-2 px-6 py-2 rounded-full bg-monnama-terra text-white text-sm font-medium hover:bg-monnama-terra-dark transition-colors duration-200"
           >
             {emptyBtn}
